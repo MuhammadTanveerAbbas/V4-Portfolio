@@ -1,16 +1,24 @@
 "use client";
 
-import { Linkedin, Github, Mail } from "lucide-react";
+import {
+  Linkedin,
+  Github,
+  Mail,
+  Briefcase,
+  Wrench,
+  User,
+  MessageSquare,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { StaggeredMenu } from "./staggered-menu";
 
 const navItems = [
-  { label: "Work", href: "/work" },
-  { label: "Services", href: "/services" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
+  { label: "Work", href: "/work", icon: Briefcase },
+  { label: "Services", href: "/services", icon: Wrench },
+  { label: "About", href: "/about", icon: User },
+  { label: "Contact", href: "/contact", icon: MessageSquare },
 ];
 
 export function Navbar() {
@@ -26,19 +34,23 @@ export function Navbar() {
       </Link>
 
       <div className="hidden md:flex items-center gap-4 bg-black/90 p-2 rounded-full backdrop-blur-sm border border-white/10">
-        {navItems.map((item) => (
-          <Link
-            key={item.label}
-            href={item.href}
-            className={`px-6 py-2 rounded-full font-mono text-sm transition-colors uppercase ${
-              pathname === item.href
-                ? "bg-[#4a0dbc] text-white shadow-lg shadow-[#4a0dbc]/50"
-                : "bg-transparent text-white hover:bg-[#4a0dbc] hover:text-white hover:shadow-lg hover:shadow-[#4a0dbc]/50"
-            }`}
-          >
-            {item.label}
-          </Link>
-        ))}
+        {navItems.map((item) => {
+          const Icon = item.icon;
+          return (
+            <Link
+              key={item.label}
+              href={item.href}
+              className={`px-6 py-2 rounded-full font-mono text-sm transition-colors uppercase flex items-center gap-2 ${
+                pathname === item.href
+                  ? "bg-[#4a0dbc] text-white shadow-lg shadow-[#4a0dbc]/50"
+                  : "bg-transparent text-white hover:bg-[#4a0dbc] hover:text-white hover:shadow-lg hover:shadow-[#4a0dbc]/50"
+              }`}
+            >
+              <Icon size={16} />
+              {item.label}
+            </Link>
+          );
+        })}
       </div>
 
       <div className="flex items-center gap-2">
