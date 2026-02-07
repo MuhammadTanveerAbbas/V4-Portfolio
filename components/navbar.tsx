@@ -1,25 +1,25 @@
-"use client"
+"use client";
 
-import { Linkedin, Github, Mail } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { StaggeredMenu } from "./staggered-menu"
+import { Linkedin, Github, Mail } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { StaggeredMenu } from "./staggered-menu";
 
 const navItems = [
   { label: "Work", href: "/work" },
   { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
-]
+];
 
 export function Navbar() {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-4 md:px-8 bg-transparent backdrop-blur-md">
       <Link href="/" className="flex items-center gap-2">
-        <Image src="/logo.png" alt="Logo" width={32} height={32} />
+        <Image src="/Logo.png" alt="Logo" width={32} height={32} />
         <span className="font-serif text-sm md:text-lg font-bold uppercase tracking-wide text-white">
           Muhammad Tanveer Abbas
         </span>
@@ -70,5 +70,5 @@ export function Navbar() {
         </div>
       </div>
     </nav>
-  )
+  );
 }
