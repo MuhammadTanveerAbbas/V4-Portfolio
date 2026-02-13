@@ -6,11 +6,11 @@ A modern, responsive portfolio website built with Next.js 16, React 19, and Tail
 
 - **Modern Stack**: Next.js 16, React 19, TypeScript
 - **Styling**: Tailwind CSS 4 with custom animations
-- **UI Components**: 50+ pre-built Radix UI components
+- **UI Components**: 50+ pre built Radix UI components
 - **Animations**: Framer Motion for smooth, performant animations
 - **Dark Mode**: Next Themes for seamless theme switching
 - **Forms**: React Hook Form with Zod validation
-- **Responsive**: Mobile-first design with responsive utilities
+- **Responsive**: Mobile first design with responsive utilities
 - **Analytics**: Vercel Analytics integration
 - **SEO**: Schema markup and sitemap included
 
@@ -30,14 +30,14 @@ A modern, responsive portfolio website built with Next.js 16, React 19, and Tail
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - npm or yarn
 
 ### Installation
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/MuhammadTanveerAbbas/V4-Portfolio.git
 cd V4-Portfolio
 
 # Install dependencies
@@ -82,7 +82,7 @@ V4-Portfolio/
 │   ├── hero.tsx          # Hero section
 │   ├── navbar.tsx        # Navigation bar
 │   ├── footer.tsx        # Footer
-│   ├── contact-form.tsx  # Contact form
+│   ├── contact form.tsx  # Contact form
 │   └── ...               # Other components
 ├── hooks/                # Custom React hooks
 ├── lib/                  # Utility functions
