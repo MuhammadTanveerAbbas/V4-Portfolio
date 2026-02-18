@@ -20,13 +20,13 @@ export const metadata: Metadata = {
     "Build SaaS MVPs in 2-3 weeks. Validate ideas, attract users, and showcase traction to investors. Expert in modern web technologies and rapid product development.",
   keywords:
     "SaaS MVP, MVP development, startup development, SaaS builder, early stage founders, product validation, rapid development",
-  generator: "v0.app",
+  metadataBase: new URL("https://muhammadtanveerabbas.vercel.app"),
   openGraph: {
     title: "Muhammad Tanveer Abbas | SaaS MVP Builder",
-    description:
-      "Build SaaS MVPs in 2-3 weeks to validate ideas and attract investors",
+    description: "Build SaaS MVPs in 2-3 weeks to validate ideas and attract investors",
     type: "website",
     locale: "en_US",
+    images: [{ url: "/OG.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",

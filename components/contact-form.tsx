@@ -142,7 +142,7 @@ export function ContactForm() {
 
           <div>
             <label className="font-mono text-xs uppercase mb-2 block">
-              What problem does your SaaS solve? *
+              Describe your idea (rough is totally fine) *
             </label>
             <textarea
               required
@@ -205,7 +205,7 @@ export function ContactForm() {
             <h3 className="font-serif text-2xl uppercase mb-6">Get in Touch</h3>
             <div className="space-y-4">
               <a
-                href="mailto:muhammadtanveer.contact@gmail.com"
+                href="mailto:muhammadtanveerabbas.contact@gmail.com"
                 className="flex items-center gap-4 font-mono hover:text-[#4a0dbc] transition-colors"
               >
                 <Mail size={20} />
@@ -213,7 +213,7 @@ export function ContactForm() {
               </a>
               <div className="flex items-center gap-4 font-mono">
                 <MapPin size={20} />
-                Available Worldwide
+                Available Worldwide (PKT — UTC+5)
               </div>
             </div>
           </div>

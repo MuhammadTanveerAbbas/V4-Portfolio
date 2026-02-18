@@ -4,7 +4,7 @@ export function SchemaMarkup() {
     "@type": "Person",
     name: "Muhammad Tanveer Abbas",
     url: "https://muhammadtanveerabbas.vercel.app/",
-    email: "muhammadtanveerabbas.conact@gmail.com",
+    email: "muhammadtanveerabbas.contact@gmail.com",
     jobTitle: "SaaS MVP Builder",
     description:
       "I help early stage SaaS founders validate ideas and build MVPs in 2-3 weeks",

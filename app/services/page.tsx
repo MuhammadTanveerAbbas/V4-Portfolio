@@ -14,28 +14,28 @@ const services = [
     number: "01",
     title: "Idea Validation",
     description:
-      "We start by validating your core assumptions. Through market research, competitive analysis, and user interviews, we define the MVP scope that matters most.",
+      "I start by validating your core assumptions. Through market research, competitive analysis, and user interviews, I define the MVP scope that matters most.",
     deliverables: ["Market Research", "User Interviews", "Competitive Analysis", "MVP Scope Definition"],
   },
   {
     number: "02",
     title: "Rapid Development",
     description:
-      "Using modern technologies and proven development processes, we build functional, scalable MVPs in 2-3 weeks. Speed without sacrificing quality.",
+      "Using modern technologies and proven development processes, I build functional, scalable MVPs in 2-3 weeks. Speed without sacrificing quality.",
     deliverables: ["Full Stack Development", "Database Design", "API Development", "Deployment"],
   },
   {
     number: "03",
     title: "User Acquisition",
     description:
-      "We help you attract early users through strategic positioning, growth tactics, and conversion optimization. Real traction matters to investors.",
+      "I help you attract early users through strategic positioning, growth tactics, and conversion optimization. Real traction matters to investors.",
     deliverables: ["Growth Strategy", "Landing Page", "User Onboarding", "Analytics Setup"],
   },
   {
     number: "04",
     title: "Investor Preparation",
     description:
-      "Get your product and metrics ready for investor conversations. We help you build compelling demos and prepare your pitch materials.",
+      "Get your product and metrics ready for investor conversations. I help you build compelling demos and prepare your pitch materials.",
     deliverables: ["Metrics Dashboard", "Demo Preparation", "Pitch Support", "Documentation"],
   },
 ]
@@ -71,6 +71,9 @@ export default function ServicesPage() {
         </h1>
         <p className="font-mono text-white/70 mt-8 max-w-xl">
           End-to-end SaaS MVP development designed to validate your ideas, attract users, and showcase traction to investors.
+        </p>
+        <p className="font-mono text-white/70 mt-4 text-sm">
+          Projects typically start at $1,500 — scoped to your idea and timeline.
         </p>
       </section>
 
