@@ -8,7 +8,7 @@ const projects: Record<string, any> = {
   "kanbi-board": {
     title: "Kanbi Board",
     days: "18 days",
-    github: "https://github.com/MuhammadTanveerAbbas/kanbi",
+    live: "https://kanbi.vercel.app/",
     image: "/projects/Kanbi-Board.webp",
     problem: "Professionals waste 15-30 min daily converting scattered notes into actionable tasks. Manual task extraction is repetitive, error prone, and kills momentum.",
     whyFailed: [
@@ -55,7 +55,7 @@ const projects: Record<string, any> = {
   "clario-hub": {
     title: "Clario Hub",
     days: "21 days",
-    github: "https://github.com/MuhammadTanveerAbbas/Clario",
+    live: "https://clario-hub.vercel.app/",
     image: "/projects/Clario-Hub.webp",
     problem: "Users subscribe to 3-5 separate AI tools ($60-100/month). Tool sprawl kills productivity. Need unified platform for summarization, chat, writing, and notes.",
     whyFailed: [
@@ -102,7 +102,7 @@ const projects: Record<string, any> = {
   "subsight-tracker": {
     title: "Subsight Tracker",
     days: "19 days",
-    github: "https://github.com/MuhammadTanveerAbbas/Subsight",
+    live: "https://subsight-tracker.vercel.app/",
     image: "/projects/Subsight-Tracker.webp",
     problem: "Average person has 7-12 subscriptions ($273/month) but tracking requires spreadsheets or apps demanding bank access. Privacy concerns block adoption.",
     whyFailed: [
@@ -149,7 +149,7 @@ const projects: Record<string, any> = {
   "reckoner-calculator": {
     title: "Reckoner Calculator",
     days: "16 days",
-    github: "https://github.com/MuhammadTanveerAbbas/Reckoner",
+    live: "https://reckoner.vercel.app/",
     image: "/projects/Reckoner-Cal.webp",
     problem: "82% of startups fail due to cash flow issues. Founders track runway in spreadsheets (error prone, slow). Need instant, accurate financial projections.",
     whyFailed: [
@@ -196,7 +196,7 @@ const projects: Record<string, any> = {
   "pitchcraft": {
     title: "Pitchcraft",
     days: "17 days",
-    github: "https://github.com/MuhammadTanveerAbbas/PitchCraft",
+    live: "https://founders-pitchcraft.vercel.app/",
     image: "/projects/Founder-Pitch.webp",
     problem: "First pitch deck takes 8-15 hours. Founders need structured frameworks fast to accelerate ideation to pitch process.",
     whyFailed: [
@@ -243,7 +243,7 @@ const projects: Record<string, any> = {
   "cortexreach": {
     title: "Cortexreach",
     days: "20 days",
-    github: "https://github.com/MuhammadTanveerAbbas/Cortexreach",
+    live: "https://cortexreach.vercel.app/",
     image: "/projects/Cortexreach-Mail.webp",
     problem: "Personalized cold emails take 15-20 min per prospect. Sales teams need automation maintaining personalization quality to enable 5x outreach volume.",
     whyFailed: [
@@ -440,12 +440,12 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       <section className="px-4 md:px-8 pb-12 sm:pb-24">
         <div className="border-2 border-white/30 p-4 sm:p-8 md:p-12">
           <a
-            href={project.github}
+            href={project.live}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-[#4a0dbc] text-white font-mono text-xs sm:text-sm uppercase hover:bg-white hover:text-[#4a0dbc] transition-colors"
           >
-            View Full Code on GitHub
+            Live Preview
           </a>
         </div>
       </section>

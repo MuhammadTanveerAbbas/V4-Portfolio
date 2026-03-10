@@ -2,7 +2,7 @@
 
 import type React from "react";
 import { useState } from "react";
-import { ArrowRight, Mail, MapPin, CheckCircle, XCircle } from "lucide-react";
+import { ArrowRight, Mail, MapPin, CheckCircle, XCircle, Clock, Phone } from "lucide-react";
 
 export function ContactForm() {
   const [formData, setFormData] = useState({
@@ -203,41 +203,57 @@ export function ContactForm() {
         <div className="space-y-12">
           <div>
             <h3 className="font-serif text-2xl uppercase mb-6">Get in Touch</h3>
-            <div className="space-y-4">
+            <div className="space-y-4 font-mono text-sm">
               <a
                 href="mailto:muhammadtanveerabbas.contact@gmail.com"
-                className="flex items-center gap-4 font-mono hover:text-[#4a0dbc] transition-colors"
+                className="flex items-center gap-4 hover:text-[#4a0dbc] transition-colors"
               >
                 <Mail size={20} />
                 Contact Mail
               </a>
-              <div className="flex items-center gap-4 font-mono">
+              <div className="flex items-center gap-4">
                 <MapPin size={20} />
                 Available Worldwide (PKT — UTC+5)
+              </div>
+              <div className="flex items-center gap-4">
+                <Clock size={20} />
+                Response time: Within 24 hours
+              </div>
+              <div className="flex items-center gap-4">
+                <Clock size={20} />
+                Best time: Weekday mornings
+              </div>
+              <div className="flex items-center gap-4">
+                <Phone size={20} />
+                Available for calls: Mon-Fri, 9 AM-6 PM PKT
               </div>
             </div>
           </div>
 
-          <div className="border-2 border-white/30 p-8 bg-white/5">
-            <h3 className="font-serif text-2xl uppercase mb-4">Next Steps</h3>
-            <ol className="font-mono text-sm text-white/70 space-y-3">
-              <li>1. Share your idea and goals</li>
-              <li>2. We validate the MVP scope</li>
-              <li>3. Define timeline and deliverables</li>
-              <li>4. Start building in 2-3 weeks</li>
-            </ol>
-          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="border-2 border-white/30 p-8 bg-white/5">
+              <h3 className="font-serif text-lg uppercase mb-4">Next Steps</h3>
+              <ol className="font-mono text-xs text-white/70 space-y-2">
+                <li>1. Share your idea and goals</li>
+                <li>2. We validate the MVP scope</li>
+                <li>3. Define timeline and deliverables</li>
+                <li>4. Start building in 2-3 weeks</li>
+                <li>5. Launch and scale your MVP</li>
+              </ol>
+            </div>
 
-          <div className="border-2 border-[#4a0dbc] p-8 bg-[#4a0dbc]/10">
-            <h3 className="font-serif text-2xl uppercase mb-4 text-[#4a0dbc]">
-              Why Work Together?
-            </h3>
-            <ul className="font-mono text-sm text-white/70 space-y-2">
-              <li>✓ 2-3 week MVP delivery</li>
-              <li>✓ Modern tech stack</li>
-              <li>✓ Founder-focused approach</li>
-              <li>✓ Scalable architecture</li>
-            </ul>
+            <div className="border-2 border-[#4a0dbc] p-8 bg-[#4a0dbc]/10">
+              <h3 className="font-serif text-lg uppercase mb-4 text-[#4a0dbc]">
+                Why Work Together?
+              </h3>
+              <ul className="font-mono text-xs text-white/70 space-y-2">
+                <li>✓ 2-3 week MVP delivery</li>
+                <li>✓ Modern tech stack</li>
+                <li>✓ Founder-focused approach</li>
+                <li>✓ Scalable architecture</li>
+                <li>✓ Post-launch support included</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

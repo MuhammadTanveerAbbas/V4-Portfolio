@@ -1,11 +1,20 @@
-import { Linkedin, Github, Twitter } from "lucide-react";
+import { Linkedin, Github } from "lucide-react";
+
+function XLogo() {
+  return (
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.207-6.807-5.974 6.807H2.882l7.432-8.491L1.227 2.25h6.836l4.713 6.231 5.579-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" />
+    </svg>
+  );
+}
 
 const socialLinks = [
-  {
-    name: "Twitter",
-    icon: Twitter,
-    href: "https://twitter.com/m_tanveerabbas",
-  },
   {
     name: "LinkedIn",
     icon: Linkedin,
@@ -15,6 +24,11 @@ const socialLinks = [
     name: "Github",
     icon: Github,
     href: "https://github.com/muhammadtanveerabbas",
+  },
+  {
+    name: "X",
+    icon: XLogo,
+    href: "https://x.com/m_tanveerabbas",
   },
 ];
 
