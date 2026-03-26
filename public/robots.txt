@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /.next/
-Disallow: /node_modules/
-
-Sitemap: https://muhammadtanveer.com/sitemap.xml

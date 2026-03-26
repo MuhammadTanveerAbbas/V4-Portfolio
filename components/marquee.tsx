@@ -1,28 +1,28 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 interface MarqueeProps {
-  text: string
-  direction?: number
-  className?: string
+  children: React.ReactNode[];
+  direction?: "left" | "right";
+  duration?: number;
+  className?: string;
 }
 
-export function Marquee({ text, direction = 1, className }: MarqueeProps) {
+export function Marquee({ children, direction = "left", duration = 40, className }: MarqueeProps) {
+  const anim = direction === "left" ? "marquee-rtl" : "marquee-ltr";
+  const track = [...children, ...children]; // duplicate for seamless loop
+
   return (
-    <div className={cn("flex overflow-hidden whitespace-nowrap py-4", className)}>
-      <motion.div
-        className="flex gap-4 md:gap-8"
-        animate={{ x: direction === 1 ? [0, -1920] : [-1920, 0] }}
-        transition={{ repeat: Number.POSITIVE_INFINITY, ease: "linear", duration: 30 }}
+    <div className={cn("flex overflow-hidden", className)}>
+      <div
+        className="flex shrink-0"
+        style={{ animation: `${anim} ${duration}s linear infinite`, willChange: "transform" }}
       >
-        {[...Array(4)].map((_, i) => (
-          <span key={i} className="text-5xl sm:text-7xl md:text-8xl lg:text-[10vw] font-black uppercase leading-none tracking-tighter font-serif flex-shrink-0">
-            {text}
-          </span>
+        {track.map((child, i) => (
+          <div key={i} className="shrink-0">{child}</div>
         ))}
-      </motion.div>
+      </div>
     </div>
-  )
+  );
 }

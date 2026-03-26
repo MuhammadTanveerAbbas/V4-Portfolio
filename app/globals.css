@@ -143,15 +143,37 @@
 }
 
 @keyframes spin-slow {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .animate-spin-slow {
   animation: spin-slow 10s linear infinite;
+}
+
+/* Marquee — GPU composited via translateX */
+@keyframes marquee-rtl {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-ltr {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-spin-slow,
+  [style*="marquee-rtl"],
+  [style*="marquee-ltr"] {
+    animation: none !important;
+  }
+}
+
+/* Smooth scroll on supported browsers */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }

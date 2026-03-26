@@ -4,8 +4,10 @@ import { ContactForm } from "@/components/contact-form"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Contact | Muhammad Tanveer Abbas | SaaS MVP Builder",
-  description: "Get in touch to discuss your SaaS MVP project. Let's validate your idea and build your product.",
+  title: "Contact — Hire a SaaS Developer",
+  description:
+    "Get in touch with Muhammad Tanveer Abbas to discuss your SaaS idea, MVP scope, or development project. Fast response guaranteed.",
+  alternates: { canonical: "https://muhammadtanveerabbas.vercel.app/contact" },
 }
 
 export default function ContactPage() {

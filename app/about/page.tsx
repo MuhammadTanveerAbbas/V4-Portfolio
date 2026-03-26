@@ -3,9 +3,10 @@ import { Footer } from "@/components/footer"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "About Muhammad Tanveer Abbas | SaaS MVP Builder",
-  description: "Learn about Muhammad Tanveer Abbas and how he helps early stage SaaS founders validate ideas and build MVPs in 2-3 weeks.",
-  keywords: "Muhammad Tanveer Abbas, SaaS founder, MVP builder, startup consultant",
+  title: "About Muhammad Tanveer Abbas",
+  description:
+    "Learn about Muhammad Tanveer Abbas — SaaS developer, MVP builder, and technical partner for early-stage founders in USA, UK, and Europe.",
+  alternates: { canonical: "https://muhammadtanveerabbas.vercel.app/about" },
 }
 
 const stats = [

@@ -23,7 +23,7 @@ export function ServiceCard({ number, title, tags }: ServiceCardProps) {
         <div className="container mx-auto px-4 flex flex-col md:flex-row md:items-start justify-between gap-4 md:gap-8">
           <div className="font-mono text-sm md:text-xl text-[#4a0dbc] flex-shrink-0">({number})</div>
           <div className="flex-1 min-w-0">
-            <h3 className="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-bold uppercase text-white mb-4 group-hover:translate-x-4 transition-transform duration-300 break-words">
+            <h3 className="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-bold uppercase text-white mb-4 group-hover:translate-x-4 transition-transform duration-300 break-words" style={{ willChange: "transform" }}>
               {title}
             </h3>
             <div className="flex gap-2 md:gap-4 flex-wrap">

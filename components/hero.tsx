@@ -32,27 +32,14 @@ export function Hero() {
 
           <motion.div
             animate={{ rotate: 360 }}
-            transition={{
-              repeat: Number.POSITIVE_INFINITY,
-              duration: 20,
-              ease: "linear",
-            }}
+            transition={{ repeat: Number.POSITIVE_INFINITY, duration: 20, ease: "linear" }}
             className="flex md:hidden items-center justify-center w-20 h-20 bg-linear-to-br from-white to-[#e6e6ff] rounded-full relative shadow-lg shadow-[#4a0dbc]/40"
           >
             <div className="absolute inset-0 flex items-center justify-center">
-              <svg
-                viewBox="0 0 100 100"
-                width="100"
-                height="100"
-                className="w-full h-full fill-[#0a0e27]"
-              >
-                <path
-                  id="curve"
-                  d="M 50 50 m -37 0 a 37 37 0 1 1 74 0 a 37 37 0 1 1 -74 0"
-                  fill="transparent"
-                />
+              <svg viewBox="0 0 100 100" width="100" height="100" className="w-full h-full fill-[#0a0e27]">
+                <path id="curve-mobile" d="M 50 50 m -37 0 a 37 37 0 1 1 74 0 a 37 37 0 1 1 -74 0" fill="transparent" />
                 <text className="text-[12px] font-mono font-bold uppercase tracking-widest">
-                  <textPath href="#curve">Scroll Down • Scroll Down •</textPath>
+                  <textPath href="#curve-mobile">Scroll Down • Scroll Down •</textPath>
                 </text>
               </svg>
             </div>
@@ -64,19 +51,10 @@ export function Hero() {
             className="hidden md:flex items-center justify-center w-24 md:w-32 h-24 md:h-32 bg-linear-to-br from-white to-[#e6e6ff] rounded-full relative shadow-lg shadow-[#4a0dbc]/40"
           >
             <div className="absolute inset-0 flex items-center justify-center animate-spin-slow">
-              <svg
-                viewBox="0 0 100 100"
-                width="100"
-                height="100"
-                className="w-full h-full fill-[#0a0e27]"
-              >
-                <path
-                  id="curve"
-                  d="M 50 50 m -37 0 a 37 37 0 1 1 74 0 a 37 37 0 1 1 -74 0"
-                  fill="transparent"
-                />
+              <svg viewBox="0 0 100 100" width="100" height="100" className="w-full h-full fill-[#0a0e27]">
+                <path id="curve-desktop" d="M 50 50 m -37 0 a 37 37 0 1 1 74 0 a 37 37 0 1 1 -74 0" fill="transparent" />
                 <text className="text-[12px] font-mono font-bold uppercase tracking-widest">
-                  <textPath href="#curve">Scroll Down • Scroll Down •</textPath>
+                  <textPath href="#curve-desktop">Scroll Down • Scroll Down •</textPath>
                 </text>
               </svg>
             </div>

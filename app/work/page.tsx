@@ -5,11 +5,10 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Portfolio | SaaS MVP Projects | Muhammad Tanveer Abbas",
+  title: "Work & Projects",
   description:
-    "Real SaaS projects built to demonstrate rapid MVP development.",
-  keywords:
-    "SaaS portfolio, MVP case studies, startup projects, product development",
+    "Explore SaaS products and MVPs built by Muhammad Tanveer Abbas for early-stage founders. Real projects, shipped in 2–3 weeks.",
+  alternates: { canonical: "https://muhammadtanveerabbas.vercel.app/work" },
 };
 
 const projects = [
@@ -18,7 +17,7 @@ const projects = [
     title: "Kanbi Board",
     category: "SaaS",
     year: "2025",
-    image: "/projects/Kanbi-Board.webp",
+    image: "/projects/Kanbi-Board.png",
     description: "Visual project management with kanban workflows",
   },
   {
@@ -26,7 +25,7 @@ const projects = [
     title: "Clario Hub",
     category: "SaaS",
     year: "2025",
-    image: "/projects/Clario-Hub.webp",
+    image: "/projects/Clario-Hub.png",
     description: "Unified data hub for streamlined business operations",
   },
   {
@@ -34,33 +33,18 @@ const projects = [
     title: "Subsight Tracker",
     category: "SaaS",
     year: "2025",
-    image: "/projects/Subsight-Tracker.webp",
+    image: "/projects/Subsight-Tracker.png",
     description: "Real-time subscription analytics and insights",
   },
   {
-    id: "reckoner-calculator",
-    title: "Reckoner Calculator",
+    id: "readlyn",
+    title: "Readlyn",
     category: "SaaS",
     year: "2025",
-    image: "/projects/Reckoner-Cal.webp",
-    description: "Smart scheduling and calendar management",
+    image: "/projects/Readlyn.png",
+    description: "Paste a Figma URL and get a shareable developer spec with CSS, Tailwind, and AI annotations",
   },
-  {
-    id: "pitchcraft",
-    title: "Pitchcraft",
-    category: "SaaS",
-    year: "2025",
-    image: "/projects/Founder-Pitch.webp",
-    description: "Investor-ready pitch deck creation tool",
-  },
-  {
-    id: "cortexreach",
-    title: "Cortexreach",
-    category: "SaaS",
-    year: "2025",
-    image: "/projects/Cortexreach-Mail.webp",
-    description: "AI-powered email marketing automation platform",
-  },
+
 ];
 
 export default function WorkPage() {

@@ -101,11 +101,12 @@ export function DarkVeil({
     const parent = canvas.parentElement as HTMLElement;
 
     const renderer = new Renderer({
-      dpr: Math.min(window.devicePixelRatio, 2),
+      dpr: Math.min(window.devicePixelRatio, 1.5), // cap at 1.5 — 2x is overkill for bg
       canvas,
     });
 
     const gl = renderer.gl;
+    gl.canvas.style.willChange = "transform"; // promote to GPU layer
     const geometry = new Triangle(gl);
 
     const program = new Program(gl, {
@@ -136,19 +137,22 @@ export function DarkVeil({
 
     const start = performance.now();
     let frame = 0;
+    let lastTime = 0;
+    const TARGET_FPS = 30; // background effect doesn't need 60fps
+    const FRAME_INTERVAL = 1000 / TARGET_FPS;
 
-    const loop = () => {
-      program.uniforms.uTime.value = ((performance.now() - start) / 1000) * speed;
-      program.uniforms.uHueShift.value = hueShift;
-      program.uniforms.uNoise.value = noiseIntensity;
-      program.uniforms.uScan.value = scanlineIntensity;
-      program.uniforms.uScanFreq.value = scanlineFrequency;
-      program.uniforms.uWarp.value = warpAmount;
-      renderer.render({ scene: mesh });
+    const loop = (now: number) => {
       frame = requestAnimationFrame(loop);
+      // Skip frames to target ~30fps — halves GPU load
+      if (now - lastTime < FRAME_INTERVAL) return;
+      lastTime = now;
+      // Pause when tab is hidden
+      if (document.hidden) return;
+      program.uniforms.uTime.value = ((now - start) / 1000) * speed;
+      renderer.render({ scene: mesh });
     };
 
-    loop();
+    frame = requestAnimationFrame(loop);
 
     return () => {
       cancelAnimationFrame(frame);

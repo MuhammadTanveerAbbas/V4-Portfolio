@@ -4,9 +4,10 @@ import { ArrowRight } from "lucide-react"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Services | SaaS MVP Development | Muhammad Tanveer Abbas",
-  description: "SaaS MVP development services: idea validation, rapid development, user acquisition, and investor preparation. Build your MVP in 2-3 weeks.",
-  keywords: "SaaS MVP services, MVP development, startup development, product validation, rapid development",
+  title: "Services — SaaS & MVP Development",
+  description:
+    "SaaS development services by Muhammad Tanveer Abbas: Idea Validation, Rapid Development, User Acquisition, and Investor-Ready MVPs for founders.",
+  alternates: { canonical: "https://muhammadtanveerabbas.vercel.app/services" },
 }
 
 const services = [
