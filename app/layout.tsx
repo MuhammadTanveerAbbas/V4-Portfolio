@@ -63,14 +63,6 @@ export const metadata: Metadata = {
     title: "Muhammad Tanveer Abbas | SaaS Developer & MVP Builder",
     description:
       "Helping early-stage founders validate ideas and launch SaaS MVPs in 2–3 weeks. Based globally, working with founders in USA, UK, and Europe.",
-    images: [
-      {
-        url: "/OG.png",
-        width: 1200,
-        height: 630,
-        alt: "Muhammad Tanveer Abbas — SaaS Developer & MVP Builder",
-      },
-    ],
     locale: "en_US",
   },
 
@@ -79,8 +71,7 @@ export const metadata: Metadata = {
     title: "Muhammad Tanveer Abbas | SaaS Developer & MVP Builder",
     description:
       "Helping early-stage founders validate ideas and ship SaaS products fast.",
-    creator: "@m_tanveerabbas", // ⚠️ Replace with real handle if different
-    images: ["/OG.png"],
+    creator: "@m_tanveerabbas",
   },
 
   robots: {
