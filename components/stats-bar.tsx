@@ -1,5 +1,5 @@
 const stats = [
-  { value: "4", label: "SaaS Products Shipped" },
+  { value: "6", label: "SaaS Products Shipped" },
   { value: "2–3", label: "Weeks to Launch" },
   { value: "100%", label: "Hands-On Execution" },
   { value: "USA / UK", label: "Clients Targeted" },

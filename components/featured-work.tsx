@@ -4,11 +4,11 @@ import { ArrowUpRight } from "lucide-react";
 
 const featured = [
   {
-    id: "readlyn",
-    title: "Readlyn",
+    id: "repurpose-ai",
+    title: "Repurpose AI",
     tag: "SaaS · 2025",
-    image: "/projects/Readlyn.png",
-    desc: "Paste a Figma URL, get a shareable developer spec with CSS, Tailwind & AI annotations.",
+    image: "/projects/Repurpose AI.png",
+    desc: "Transform one video transcript into six platform-ready content pieces automatically.",
   },
   {
     id: "kanbi-board",

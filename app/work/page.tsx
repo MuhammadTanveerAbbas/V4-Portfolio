@@ -37,14 +37,29 @@ const projects = [
     description: "Real-time subscription analytics and insights",
   },
   {
-    id: "readlyn",
-    title: "Readlyn",
+    id: "repurpose-ai",
+    title: "Repurpose AI",
     category: "SaaS",
     year: "2025",
-    image: "/projects/Readlyn.png",
-    description: "Paste a Figma URL and get a shareable developer spec with CSS, Tailwind, and AI annotations",
+    image: "/projects/Repurpose AI.png",
+    description: "Transform one video transcript into six platform-ready content pieces automatically",
   },
-
+  {
+    id: "keyping",
+    title: "KeyPing",
+    category: "SaaS",
+    year: "2025",
+    image: "/projects/KeyPing.png",
+    description: "Validate API keys across 10+ providers in seconds with health scores and rate limits",
+  },
+  {
+    id: "crivox",
+    title: "Crivox",
+    category: "SaaS",
+    year: "2025",
+    image: "/projects/Crivox.png",
+    description: "AI-powered comment generator for authentic, platform-aware social media engagement",
+  },
 ];
 
 export default function WorkPage() {

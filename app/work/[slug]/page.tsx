@@ -9,6 +9,7 @@ const projects: Record<string, any> = {
     title: "Kanbi Board",
     days: "18 days",
     live: "https://kanbi.vercel.app/",
+    github: "https://github.com/MuhammadTanveerAbbas/kanbi",
     image: "/projects/Kanbi-Board.png",
     problem: "Professionals waste 15-30 min daily converting scattered notes into actionable tasks. Manual task extraction is repetitive, error prone, and kills momentum.",
     whyFailed: [
@@ -56,6 +57,7 @@ const projects: Record<string, any> = {
     title: "Clario Hub",
     days: "21 days",
     live: "https://clario-hub.vercel.app/",
+    github: "https://github.com/MuhammadTanveerAbbas/Clario-ai",
     image: "/projects/Clario-Hub.png",
     problem: "Users subscribe to 3-5 separate AI tools ($60-100/month). Tool sprawl kills productivity. Need unified platform for summarization, chat, writing, and notes.",
     whyFailed: [
@@ -103,6 +105,7 @@ const projects: Record<string, any> = {
     title: "Subsight Tracker",
     days: "19 days",
     live: "https://subsight-tracker.vercel.app/",
+    github: "https://github.com/MuhammadTanveerAbbas/Subsight",
     image: "/projects/Subsight-Tracker.png",
     problem: "Average person has 7-12 subscriptions ($273/month) but tracking requires spreadsheets or apps demanding bank access. Privacy concerns block adoption.",
     whyFailed: [
@@ -146,10 +149,161 @@ const projects: Record<string, any> = {
       "Export functionality increased perceived value 3x. Always include exports.",
     ],
   },
+  "repurpose-ai": {
+    title: "Repurpose AI",
+    days: "20 days",
+    live: "https://the-repurpose-ai.vercel.app/",
+    github: "https://github.com/MuhammadTanveerAbbas/Repurpose",
+    image: "/projects/Repurpose AI.png",
+    problem: "Content creators spend 6+ hours manually adapting one video transcript into platform-specific posts. Each platform has different formats, character limits, and conventions. Manual repurposing is slow, inconsistent, and kills content velocity.",
+    whyFailed: [
+      "Generic AI tools don't understand platform-specific conventions (LinkedIn vs Twitter structure)",
+      "Manual writing takes hours per platform and doesn't scale",
+      "Copy-pasting transcripts produces generic content that doesn't engage audiences",
+    ],
+    built: [
+      "YouTube transcript extraction via URL (auto-fetches captions if available)",
+      "6 platform-specific output formats: LinkedIn long-form, LinkedIn hooks, Twitter threads, email newsletters, YouTube descriptions, short-form video scripts",
+      "Groq AI with Llama 3.3 70B for content generation with platform-aware prompts",
+      "Tone control: Professional, Casual, Punchy with regeneration on demand",
+      "Project dashboard with full history and usage tracking",
+      "Supabase auth with Google OAuth and tiered pricing (Free: 3 projects/month, Pro: unlimited)",
+    ],
+    process: {
+      week1: "YouTube API integration (3 days), Transcript parser (2 days), Auth + database schema (2 days)",
+      week2: "AI prompt engineering for 6 formats (4 days), Tone control system (2 days), Dashboard UI (1 day)",
+      week3: "Regeneration logic (2 days), Usage tracking + limits (2 days), Stripe integration + deploy (3 days)",
+    },
+    metrics: {
+      users: "500+ specs generated",
+      formats: "6 output formats per transcript",
+      performance: "Drafts generated in seconds",
+      plans: "Free + Pro ($19/mo planned)",
+      code: "React 18, TypeScript, Vite, Supabase",
+    },
+    stack: [
+      { name: "React 18 + Vite", reason: "Fast dev experience, instant HMR, lighter than Next.js for this use case" },
+      { name: "Groq Llama 3.3 70B", reason: "800 tokens/s generation speed, $0.59/1M tokens, perfect for content generation" },
+      { name: "Supabase", reason: "Auth + PostgreSQL + Edge Functions in one platform, generous free tier" },
+      { name: "Tailwind + shadcn/ui", reason: "Rapid UI development with consistent design system" },
+    ],
+    cut: [
+      "Audio/video file transcription (YouTube URLs cover 80% of use cases)",
+      "Real-time collaboration (single-user MVP is sufficient)",
+      "Custom AI model training (pre-built prompts work well enough)",
+    ],
+    lessons: [
+      "Platform-specific prompts are 60% of the value. Generic AI output doesn't work.",
+      "Users want drafts, not final copy. Regeneration is more important than perfection.",
+      "YouTube transcript extraction is harder than expected — many videos lack captions.",
+    ],
+  },
+  "keyping": {
+    title: "KeyPing",
+    days: "17 days",
+    live: "https://key-ping.vercel.app/",
+    github: "https://github.com/MuhammadTanveerAbbas/Keyping",
+    image: "/projects/KeyPing.png",
+    problem: "Developers waste hours debugging API integration failures, not knowing if the issue is their code or an invalid/expired API key. Testing keys manually across 10+ providers is tedious, and there's no unified way to check health, rate limits, or permissions.",
+    whyFailed: [
+      "Manual testing requires reading docs for each provider's auth endpoint",
+      "No visibility into rate limits, scopes, or expiry dates until something breaks",
+      "Existing tools are provider-specific or require expensive subscriptions",
+    ],
+    built: [
+      "Multi-provider validation: OpenAI, Gemini, Groq, Anthropic, Stripe, GitHub, Twitter/X, Notion, Supabase, AWS, custom endpoints",
+      "Health score (0-100) calculated from validity, scopes, rate limits, and response latency",
+      "Auto-detect provider from key pattern (no manual selection needed)",
+      "Bulk testing: validate multiple keys at once",
+      "Test history with full audit trail, search, and filtering",
+      "Expiry alerts and team workspaces (Pro plan)",
+      "Dark/light mode with emerald glassmorphism UI",
+    ],
+    process: {
+      week1: "Provider integration architecture (3 days), Auth endpoint mapping for 10 providers (3 days), Database schema (1 day)",
+      week2: "Health score algorithm (2 days), Bulk testing logic (2 days), Dashboard UI with Recharts (3 days)",
+      week3: "Test history + search (2 days), Expiry alerts (1 day), Team workspaces (2 days), Deploy (1 day)",
+    },
+    metrics: {
+      providers: "10+ supported providers",
+      validation: "<2s average validation time",
+      uptime: "99.9% SLA",
+      plans: "Free (50 tests/day) + Pro ($12/mo)",
+      code: "React 18, TypeScript, Vite, Supabase",
+    },
+    stack: [
+      { name: "React 18 + Vite", reason: "Fast builds, instant feedback during development" },
+      { name: "Supabase Edge Functions", reason: "Serverless validation logic, keeps keys secure (never stored client-side)" },
+      { name: "Recharts", reason: "Lightweight charting for health scores and latency benchmarks" },
+      { name: "Tailwind + Framer Motion", reason: "Glassmorphism UI with smooth animations" },
+    ],
+    cut: [
+      "Real-time key monitoring (polling on-demand is sufficient for MVP)",
+      "Slack/Discord notifications (email alerts cover the core need)",
+      "Custom provider SDK generation (too complex for initial launch)",
+    ],
+    lessons: [
+      "Provider auth endpoints are inconsistent. Spent 40% of time on edge case handling.",
+      "Health score algorithm needed multiple iterations to feel accurate.",
+      "Auto-detection from key patterns saved users time but required extensive regex testing.",
+    ],
+  },
+  "crivox": {
+    title: "Crivox",
+    days: "16 days",
+    live: "https://crivox.vercel.app/",
+    github: "https://github.com/MuhammadTanveerAbbas/Crivox",
+    image: "/projects/Crivox.png",
+    problem: "Social media engagement requires thoughtful comments, but staring at a blank reply box kills momentum. Generic AI tools produce robotic responses that don't match your voice or the platform's conventions. Manual commenting doesn't scale.",
+    whyFailed: [
+      "Generic AI (ChatGPT, Claude) produces comments that sound fake and templated",
+      "No tool understands platform-specific conventions (LinkedIn vs Reddit tone)",
+      "Manual commenting takes too long when engaging with 10+ posts daily",
+    ],
+    built: [
+      "Generate comments from pasted text, URL (as reference), or uploaded image",
+      "8 tone styles: Professional, Casual, Witty, Supportive, Bold, Educational, Insightful, Authoritative",
+      "Platform-aware output: LinkedIn, Twitter/X, Instagram, Facebook, Reddit, Blog/Website",
+      "9 languages: English, Spanish, French, German, Portuguese, Hindi, Arabic, Chinese, Japanese",
+      "Up to 5 comment variations per generation (3 on free tier)",
+      "Bulk generation for up to 5 posts at once",
+      "Comment queue with scheduling and reusable templates",
+      "Public share links for generated comment sets",
+    ],
+    process: {
+      week1: "AI prompt engineering for 8 tones × 6 platforms (4 days), Database schema (2 days), Auth (1 day)",
+      week2: "Comment generation UI (3 days), Bulk generation logic (2 days), Template system (2 days)",
+      week3: "Queue + scheduling (2 days), Share links (1 day), Usage stats dashboard (2 days), Deploy (1 day)",
+    },
+    metrics: {
+      comments: "50K+ comments generated",
+      tones: "8 tone styles",
+      platforms: "6 platforms supported",
+      languages: "9 languages",
+      code: "React 18, TypeScript, Vite, Supabase, Groq AI",
+    },
+    stack: [
+      { name: "React 18 + Vite", reason: "Fast dev experience, perfect for interactive UI" },
+      { name: "Groq Llama 3.3 70B", reason: "Fast, cheap, and good enough for comment generation" },
+      { name: "Supabase", reason: "Auth, database, and edge functions in one platform" },
+      { name: "Framer Motion", reason: "Smooth animations for comment variations" },
+    ],
+    cut: [
+      "Browser extension (web app covers core use case)",
+      "Sentiment analysis (tone selection is sufficient)",
+      "Auto-posting to platforms (legal/API complexity too high for MVP)",
+    ],
+    lessons: [
+      "Tone consistency across platforms is hard. Each platform has unwritten rules.",
+      "Users want variations, not perfection. 5 options > 1 perfect comment.",
+      "Image-to-comment is underused but loved by the few who try it.",
+    ],
+  },
   "readlyn": {
     title: "Readlyn",
     days: "16 days",
     live: "https://readlyn.vercel.app/",
+    github: "https://github.com/MuhammadTanveerAbbas/Readlyn",
     image: "/projects/Readlyn.png",
     problem: "Design-to-dev handoff is broken. Developers waste hours guessing CSS values, asking designers for specs, and manually translating Figma files into code. Every back-and-forth slows down shipping.",
     whyFailed: [
@@ -259,7 +413,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             <ul className="space-y-2">
               {project.whyFailed.map((item: string) => (
                 <li key={item} className="font-mono text-xs sm:text-sm text-white/70 flex items-start gap-2 sm:gap-3">
-                  <span className="text-red-400 mt-1 flex-shrink-0">✗</span>
+                  <span className="text-red-400 mt-1 shrink-0">✗</span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -271,7 +425,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             <ul className="space-y-2">
               {project.built.map((item: string) => (
                 <li key={item} className="font-mono text-xs sm:text-sm text-white/70 flex items-start gap-2 sm:gap-3">
-                  <span className="text-green-400 mt-1 flex-shrink-0">✓</span>
+                  <span className="text-green-400 mt-1 shrink-0">✓</span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -325,7 +479,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             <ul className="space-y-2">
               {project.cut.map((item: string) => (
                 <li key={item} className="font-mono text-xs sm:text-sm text-white/70 flex items-start gap-2 sm:gap-3">
-                  <span className="text-yellow-400 mt-1 flex-shrink-0">—</span>
+                  <span className="text-yellow-400 mt-1 shrink-0">—</span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -337,7 +491,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             <ul className="space-y-2">
               {project.lessons.map((item: string) => (
                 <li key={item} className="font-mono text-xs sm:text-sm text-white/70 flex items-start gap-2 sm:gap-3">
-                  <span className="text-blue-400 mt-1 flex-shrink-0">→</span>
+                  <span className="text-blue-400 mt-1 shrink-0">→</span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -348,14 +502,24 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
       <section className="px-4 md:px-8 pb-12 sm:pb-24">
         <div className="border-2 border-white/30 p-4 sm:p-8 md:p-12">
-          <a
-            href={project.live}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-[#4a0dbc] text-white font-mono text-xs sm:text-sm uppercase hover:bg-white hover:text-[#4a0dbc] transition-colors"
-          >
-            Live Preview
-          </a>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-[#4a0dbc] text-white font-mono text-xs sm:text-sm uppercase hover:bg-white hover:text-[#4a0dbc] transition-colors text-center"
+            >
+              Live Preview
+            </a>
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-white text-black font-mono text-xs sm:text-sm uppercase hover:bg-black hover:text-white transition-colors border-2 border-white text-center"
+            >
+              GitHub Repo
+            </a>
+          </div>
         </div>
       </section>
 
