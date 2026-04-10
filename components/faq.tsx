@@ -6,19 +6,19 @@ import { Plus, Minus } from "lucide-react";
 const faqs = [
   {
     q: "How long does it actually take to build an MVP?",
-    a: "2–3 weeks for a focused MVP. Week 1 is discovery and architecture, week 2 is core development, week 3 is QA, deployment, and onboarding. Scope creep is the only thing that extends this — which is why we lock scope before writing a single line of code.",
+    a: "2–3 weeks for a focused MVP. Week 1 is discovery and architecture, week 2 is core development, week 3 is QA, deployment, and onboarding. Scope creep is the only thing that extends this  which is why we lock scope before writing a single line of code.",
   },
   {
     q: "What does it cost?",
-    a: "Projects typically start at $1,500 depending on scope and complexity. After our first call I'll send a fixed-price proposal — no hourly billing, no surprise invoices. You know the number before we start.",
+    a: "Projects typically start at $1,500 depending on scope and complexity. After our first call I'll send a fixed-price proposal  no hourly billing, no surprise invoices. You know the number before we start.",
   },
   {
     q: "What if I only have an idea and no technical background?",
-    a: "That's the ideal starting point. I'll help you define what to build, what to cut, and what actually needs to exist for your first users. You don't need to know how to code — you need to know the problem you're solving.",
+    a: "That's the ideal starting point. I'll help you define what to build, what to cut, and what actually needs to exist for your first users. You don't need to know how to code  you need to know the problem you're solving.",
   },
   {
     q: "Do you do design too or just development?",
-    a: "Both. I handle UI/UX design using Figma and implement it in code. The design is functional and clean — not award-winning agency work, but production-ready and user-tested patterns that convert.",
+    a: "Both. I handle UI/UX design using Figma and implement it in code. The design is functional and clean  not award-winning agency work, but production-ready and user-tested patterns that convert.",
   },
   {
     q: "Will I own the code?",
@@ -30,11 +30,11 @@ const faqs = [
   },
   {
     q: "Can you add features after launch?",
-    a: "Yes. Most clients come back for a second phase after validating with real users. I offer ongoing development at a fixed monthly retainer or per-feature pricing — whatever fits your stage.",
+    a: "Yes. Most clients come back for a second phase after validating with real users. I offer ongoing development at a fixed monthly retainer or per-feature pricing  whatever fits your stage.",
   },
   {
     q: "What if the MVP doesn't get traction?",
-    a: "That's valuable data, not failure. A good MVP is designed to give you a clear answer — yes or no — as cheaply as possible. If it doesn't work, you've saved months and tens of thousands of dollars finding out early.",
+    a: "That's valuable data, not failure. A good MVP is designed to give you a clear answer  yes or no  as cheaply as possible. If it doesn't work, you've saved months and tens of thousands of dollars finding out early.",
   },
   {
     q: "Do you sign NDAs?",
@@ -42,7 +42,7 @@ const faqs = [
   },
   {
     q: "How do I get started?",
-    a: "Hit the contact page, fill in a few details about your idea, and I'll reply within 24 hours to schedule a free 30-minute scoping call. No commitment, no pitch — just a conversation about what you're building.",
+    a: "Hit the contact page, fill in a few details about your idea, and I'll reply within 24 hours to schedule a free 30-minute scoping call. No commitment, no pitch  just a conversation about what you're building.",
   },
 ];
 
@@ -55,11 +55,11 @@ interface FaqItemProps {
 
 /*
   Original: all 10 FAQ items lived inside Faq() and re-rendered together whenever
-  `open` state changed — because the entire list was in one component.
+  `open` state changed  because the entire list was in one component.
   Every click re-rendered all 10 items even though only 1 changed.
 
   Fix: extract each item into a memoized FaqItem component. React.memo does a
-  shallow prop comparison — only the item whose `isOpen` prop actually changed
+  shallow prop comparison  only the item whose `isOpen` prop actually changed
   will re-render. The other 9 items are skipped entirely.
 */
 const FaqItem = memo(function FaqItem({ faq, index, isOpen, onToggle }: FaqItemProps) {

@@ -22,7 +22,7 @@ const navItems = [
   { label: "Contact", href: "/contact", icon: MessageSquare },
 ];
 
-// Memoized social links — these never change, so they should never re-render
+// Memoized social links  these never change, so they should never re-render
 // when usePathname triggers a Navbar re-render on navigation.
 const SocialLinks = memo(function SocialLinks() {
   return (

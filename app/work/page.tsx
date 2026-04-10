@@ -74,7 +74,7 @@ export default function WorkPage() {
           <span className="text-[#4a0dbc]">Projects</span>
         </h1>
         <p className="font-mono text-xs sm:text-sm md:text-base text-white/70 mt-4 sm:mt-8 max-w-xl">
-          Personal SaaS projects built to sharpen my craft — each one a real, working product.
+          Personal SaaS projects built to sharpen my craft  each one a real, working product.
         </p>
       </section>
 
@@ -96,7 +96,7 @@ export default function WorkPage() {
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/70 transition-colors duration-300 flex items-end">
                 <div className="p-3 sm:p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                   <span className="font-mono text-xs text-[#4a0dbc] uppercase">
-                    {project.category} — {project.year}
+                    {project.category}  {project.year}
                   </span>
                   <h3 className="font-serif text-xl sm:text-3xl text-white uppercase tracking-tight mt-2">
                     {project.title}

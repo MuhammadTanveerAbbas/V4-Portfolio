@@ -4,12 +4,12 @@ const reasons = [
   {
     number: "01",
     title: "I ship in 2–3 weeks",
-    desc: "Not months. Not sprints that drag on. You get a live, working product in 2–3 weeks — fast enough to validate before you run out of runway.",
+    desc: "Not months. Not sprints that drag on. You get a live, working product in 2–3 weeks  fast enough to validate before you run out of runway.",
   },
   {
     number: "02",
     title: "Full-stack, no handoffs",
-    desc: "Design, frontend, backend, database, payments, deployment — I handle all of it. No agency overhead, no miscommunication between teams.",
+    desc: "Design, frontend, backend, database, payments, deployment  I handle all of it. No agency overhead, no miscommunication between teams.",
   },
   {
     number: "03",
@@ -19,7 +19,7 @@ const reasons = [
   {
     number: "04",
     title: "Production-grade from day one",
-    desc: "Auth, RLS, error tracking, analytics, CI/CD — every project is built like it's going to scale. Because it might.",
+    desc: "Auth, RLS, error tracking, analytics, CI/CD  every project is built like it's going to scale. Because it might.",
   },
 ];
 
@@ -28,7 +28,7 @@ const others = [
   { headline: "Unreliable", body: "Freelancers disappear mid-project" },
   { headline: "Hit a Wall", body: "No-code tools break the moment you need real logic" },
   { headline: "Too Expensive", body: "Hiring in-house takes months and burns equity" },
-  { headline: "No Strategy", body: "Most devs just execute tickets — no product thinking" },
+  { headline: "No Strategy", body: "Most devs just execute tickets  no product thinking" },
 ];
 
 export function WhyMe() {
@@ -43,7 +43,7 @@ export function WhyMe() {
         </div>
 
         <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-px lg:bg-white/10">
-          {/* Left — reasons */}
+          {/* Left  reasons */}
           <div className="bg-black lg:p-10 flex flex-col">
             {reasons.map((r, i) => (
               <div
@@ -61,7 +61,7 @@ export function WhyMe() {
             ))}
           </div>
 
-          {/* Right — comparison + CTA */}
+          {/* Right  comparison + CTA */}
           <div className="bg-black lg:p-10 flex flex-col justify-between gap-8 md:gap-12 mt-8 lg:mt-0 pt-8 lg:pt-0 border-t border-white/10 lg:border-t-0">
             <div>
               <p className="font-mono text-xs uppercase text-white/40 tracking-widest mb-5">The alternatives</p>
@@ -70,7 +70,7 @@ export function WhyMe() {
                   <li key={o.headline} className="flex items-start gap-3 font-mono text-sm text-white/40">
                     <span className="text-red-500/60 shrink-0 mt-0.5">✗</span>
                     <span>
-                      <span className="text-white/70 font-bold">{o.headline} — </span>
+                      <span className="text-white/70 font-bold">{o.headline}  </span>
                       {o.body}
                     </span>
                   </li>

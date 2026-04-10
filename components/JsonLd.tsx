@@ -6,9 +6,9 @@ export default function JsonLd() {
     url: "https://muhammadtanveerabbas.vercel.app",
     image: "https://muhammadtanveerabbas.vercel.app/OG.png",
     sameAs: [
-      "https://linkedin.com/in/muhammadtanveerabbas",   // ⚠️ Confirm URL — see setup.md
+      "https://linkedin.com/in/muhammadtanveerabbas",   // ⚠️ Confirm URL  see setup.md
       "https://github.com/muhammadtanveerabbas",
-      "https://twitter.com/m_tanveerabbas",              // ⚠️ Confirm handle — see setup.md
+      "https://twitter.com/m_tanveerabbas",              // ⚠️ Confirm handle  see setup.md
       "https://dev.to/muhammadtanveerabbas",
     ],
     jobTitle: "SaaS Developer & MVP Builder",

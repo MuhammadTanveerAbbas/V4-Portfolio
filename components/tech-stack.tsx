@@ -21,7 +21,7 @@ const stack = [
     category: "Payments & AI",
     items: [
       { name: "Stripe", note: "Subscriptions, webhooks, billing portal" },
-      { name: "Groq", note: "800 tokens/s — fastest inference available" },
+      { name: "Groq", note: "800 tokens/s  fastest inference available" },
       { name: "Gemini", note: "Fallback AI with high accuracy" },
       { name: "OpenAI", note: "GPT-4 for complex reasoning tasks" },
     ],

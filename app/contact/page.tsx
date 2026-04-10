@@ -4,7 +4,7 @@ import { ContactForm } from "@/components/contact-form"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Contact — Hire a SaaS Developer",
+  title: "Contact  Hire a SaaS Developer",
   description:
     "Get in touch with Muhammad Tanveer Abbas to discuss your SaaS idea, MVP scope, or development project. Fast response guaranteed.",
   alternates: { canonical: "https://muhammadtanveerabbas.vercel.app/contact" },

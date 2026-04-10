@@ -23,7 +23,7 @@ export function Marquee({ children, direction = "left", duration = 40, className
           Problem: the duplicated second half gets keys 8–15 instead of 0–7.
           React treats them as entirely different nodes and can't reuse DOM on re-render.
 
-          Fix: render two separate, semantically distinct groups — "original" (aria-hidden=false)
+          Fix: render two separate, semantically distinct groups  "original" (aria-hidden=false)
           and "clone" (aria-hidden=true, purely visual duplicate for the seamless loop).
           Each group uses the child's own stable key, so React reconciles correctly.
           The clone group is hidden from assistive tech to avoid duplicate content.

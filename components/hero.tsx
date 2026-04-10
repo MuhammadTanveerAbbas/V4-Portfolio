@@ -6,7 +6,7 @@ import { DarkVeil } from "./dark-veil";
 
 export function Hero() {
   const { scrollYProgress } = useScroll();
-  // useTransform is a MotionValue — it does NOT cause React re-renders.
+  // useTransform is a MotionValue  it does NOT cause React re-renders.
   // The value is read directly by the motion.div via the style prop,
   // bypassing React's render cycle entirely.
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 360]);
@@ -35,7 +35,7 @@ export function Hero() {
 
           {/*
             Mobile badge: uses Framer Motion JS-driven rotation.
-            This is intentional — it's only rendered on mobile (md:hidden)
+            This is intentional  it's only rendered on mobile (md:hidden)
             and the spring/linear animation is handled via RAF.
           */}
           <motion.div
@@ -57,11 +57,11 @@ export function Hero() {
           {/*
             Desktop badge: previously had BOTH style={{ rotate }} (Framer Motion MotionValue)
             AND className="animate-spin-slow" (CSS animation) on the same element.
-            Two transforms fighting on the same element — one always wins, the other
+            Two transforms fighting on the same element  one always wins, the other
             wastes computation every frame.
 
             Fix: the outer motion.div owns the scroll-driven rotate via MotionValue (GPU composited).
-            The inner SVG wrapper that previously had animate-spin-slow is removed — the outer
+            The inner SVG wrapper that previously had animate-spin-slow is removed  the outer
             rotation already provides the spinning text ring effect driven by scroll.
             Visual output is identical: the badge rotates as you scroll.
           */}

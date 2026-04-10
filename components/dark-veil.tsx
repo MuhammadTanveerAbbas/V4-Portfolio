@@ -132,7 +132,7 @@ export function DarkVeil({
 
     const mesh = new Mesh(gl, { geometry, program });
 
-    // Debounced resize — avoids thrashing on every pixel of a drag-resize
+    // Debounced resize  avoids thrashing on every pixel of a drag-resize
     let resizeTimer: ReturnType<typeof setTimeout>;
     const resize = () => {
       clearTimeout(resizeTimer);
@@ -154,7 +154,7 @@ export function DarkVeil({
     const start = performance.now();
     let frame = 0;
     let lastTime = 0;
-    // Background shader targets 30fps — halves GPU fragment work vs 60fps.
+    // Background shader targets 30fps  halves GPU fragment work vs 60fps.
     // The slow, organic animation is imperceptible at 30fps.
     const TARGET_FPS = 30;
     const FRAME_INTERVAL = 1000 / TARGET_FPS;

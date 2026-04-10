@@ -16,7 +16,7 @@ const Pill = ({ label }: { label: string }) => (
   </span>
 );
 
-// Row 1 — ghost outlined words, scrolls left
+// Row 1  ghost outlined words, scrolls left
 const row1 = [
   <span key="v" className={GHOST_CLS} style={GHOST_STYLE}>Validate</span>,
   <Star key="s1" />,
@@ -28,7 +28,7 @@ const row1 = [
   <Star key="s4" />,
 ];
 
-// Row 2 — solid white words + purple pills, scrolls right
+// Row 2  solid white words + purple pills, scrolls right
 const row2 = [
   <span key="mvp" className={`${WORD_CLS} text-white`}>MVP</span>,
   <Pill key="p1" label="SaaS Dev" />,

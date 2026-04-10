@@ -34,7 +34,7 @@ export function StaggeredMenu({ items }: StaggeredMenuProps) {
 
       Fix: use padding-right to compensate for the scrollbar width before hiding
       overflow, preventing the layout shift. The scrollbar width is measured once
-      via a cheap offsetWidth diff — no continuous reads.
+      via a cheap offsetWidth diff  no continuous reads.
     */
     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
     document.body.style.paddingRight = `${scrollbarWidth}px`;
@@ -70,7 +70,7 @@ export function StaggeredMenu({ items }: StaggeredMenuProps) {
             />
 
             {/*
-              Menu Panel — spring animation kept identical.
+              Menu Panel  spring animation kept identical.
               The x: "100%" → x: 0 transition is a CSS transform (translateX),
               which runs on the compositor thread and doesn't block the main thread.
               Framer Motion uses transform under the hood for x/y motion values.

@@ -195,7 +195,7 @@ const projects: Record<string, any> = {
     lessons: [
       "Platform-specific prompts are 60% of the value. Generic AI output doesn't work.",
       "Users want drafts, not final copy. Regeneration is more important than perfection.",
-      "YouTube transcript extraction is harder than expected — many videos lack captions.",
+      "YouTube transcript extraction is harder than expected  many videos lack captions.",
     ],
   },
   "keyping": {
@@ -309,14 +309,14 @@ const projects: Record<string, any> = {
     whyFailed: [
       "Manual spec writing takes hours and goes stale the moment designs change",
       "Existing tools require expensive subscriptions or complex setup just to read a Figma file",
-      "No tool auto-explains components — developers still have to interpret what to build",
+      "No tool auto-explains components  developers still have to interpret what to build",
     ],
     built: [
-      "Figma URL import — paste any file URL and fetch the design instantly",
+      "Figma URL import  paste any file URL and fetch the design instantly",
       "Complete developer spec with CSS values, Tailwind classes, and design tokens",
       "Groq AI annotations that explain every component so developers know exactly what to build",
-      "Shareable spec links — no login required to view",
-      "GitHub Issues integration — create engineering tickets from specs in one click (Pro)",
+      "Shareable spec links  no login required to view",
+      "GitHub Issues integration  create engineering tickets from specs in one click (Pro)",
       "4 export formats: CSS, Tailwind, JSON, and component state docs",
     ],
     process: {
@@ -334,10 +334,10 @@ const projects: Record<string, any> = {
     },
     stack: [
       { name: "Next.js 15", reason: "App Router for fast server-side spec rendering and API routes" },
-      { name: "Figma REST API", reason: "Direct file access — no plugin install required for users" },
-      { name: "Groq Llama 3.3 70B", reason: "Fast AI annotations at low cost — 800 tokens/s, $0.59/1M tokens" },
+      { name: "Figma REST API", reason: "Direct file access  no plugin install required for users" },
+      { name: "Groq Llama 3.3 70B", reason: "Fast AI annotations at low cost  800 tokens/s, $0.59/1M tokens" },
       { name: "Supabase", reason: "Stores specs and shareable links with RLS for access control" },
-      { name: "Stripe", reason: "Free/Pro billing — $19/mo Pro plan with usage-based gating" },
+      { name: "Stripe", reason: "Free/Pro billing  $19/mo Pro plan with usage-based gating" },
     ],
     cut: [
       "Real-time Figma sync (polling on demand is sufficient for MVP)",
@@ -345,7 +345,7 @@ const projects: Record<string, any> = {
       "Slack integration (GitHub Issues covers the core workflow need)",
     ],
     lessons: [
-      "Figma API responses are deeply nested — a robust parser is 60% of the work.",
+      "Figma API responses are deeply nested  a robust parser is 60% of the work.",
       "AI annotations only add value when they're specific. Generic output kills trust.",
       "Shareable links with no login required dramatically increased adoption.",
     ],
@@ -479,7 +479,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             <ul className="space-y-2">
               {project.cut.map((item: string) => (
                 <li key={item} className="font-mono text-xs sm:text-sm text-white/70 flex items-start gap-2 sm:gap-3">
-                  <span className="text-yellow-400 mt-1 shrink-0">—</span>
+                  <span className="text-yellow-400 mt-1 shrink-0"></span>
                   <span>{item}</span>
                 </li>
               ))}

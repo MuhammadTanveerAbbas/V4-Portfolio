@@ -10,7 +10,7 @@ interface ServiceCardProps {
   tags: string[]
 }
 
-// serviceMap is static — defined outside the component so it's never recreated.
+// serviceMap is static  defined outside the component so it's never recreated.
 const serviceMap: Record<string, string> = {
   "Idea Validation": "validation",
   "Rapid Development": "development",
@@ -33,7 +33,7 @@ export const ServiceCard = memo(function ServiceCard({ number, title, tags }: Se
               Fix: removed the static inline style. The CSS transition-transform class
               already signals to the browser that a transform will happen on hover,
               which is sufficient for the browser to promote the layer at the right time.
-              The translate-x-4 hover animation is GPU-composited via CSS — no change needed.
+              The translate-x-4 hover animation is GPU-composited via CSS  no change needed.
             */}
             <h3 className="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-bold uppercase text-white mb-4 group-hover:translate-x-4 transition-transform duration-300 wrap-break-word">
               {title}

@@ -49,7 +49,7 @@ export function FeaturedWork() {
                   Original had style={{ willChange: "transform" }} statically on every image.
                   This permanently allocated a compositor layer per image even when not hovered.
                   Fix: removed the static inline style. The CSS `transition-transform` class
-                  is sufficient — the browser promotes the layer on hover when the transform
+                  is sufficient  the browser promotes the layer on hover when the transform
                   actually begins. No visual change; saves 2 permanent compositor layers.
                 */}
                 <Image

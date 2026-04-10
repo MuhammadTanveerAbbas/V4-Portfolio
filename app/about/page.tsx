@@ -5,7 +5,7 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "About Muhammad Tanveer Abbas",
   description:
-    "Learn about Muhammad Tanveer Abbas — SaaS developer, MVP builder, and technical partner for early-stage founders in USA, UK, and Europe.",
+    "Learn about Muhammad Tanveer Abbas  SaaS developer, MVP builder, and technical partner for early-stage founders in USA, UK, and Europe.",
   alternates: { canonical: "https://muhammadtanveerabbas.vercel.app/about" },
 }
 
@@ -33,13 +33,13 @@ export default function AboutPage() {
       <section className="px-4 md:px-8 pb-12 sm:pb-24">
         <div className="space-y-4 sm:space-y-6">
           <p className="font-mono text-xs sm:text-sm text-white/70 leading-relaxed">
-            I'm from Faisalabad, Punjab, Pakistan. I got into SaaS because I realized that the fastest way to learn full-stack development is by building real products under pressure. Every constraint teaches you something new. I've built 6 projects from scratch, each one pushing me to solve harder problems, master new technologies, and understand what users actually need. This hands-on approach has made me comfortable working across the entire stack—from database design to frontend polish.
+            I'm from Faisalabad, Punjab, Pakistan. I got into SaaS because I realized that the fastest way to learn full-stack development is by building real products under pressure. Every constraint teaches you something new. I've built 6 projects from scratch, each one pushing me to solve harder problems, master new technologies, and understand what users actually need. This hands-on approach has made me comfortable working across the entire stackfrom database design to frontend polish.
           </p>
           <p className="font-mono text-xs sm:text-sm text-white/70 leading-relaxed">
-            Right now, my goal is to build SaaS MVPs for founders and startups to maximize my skillset and help validate ideas that could become real businesses. I want to work with early-stage founders who have a vision but need someone who can move fast, think strategically, and execute flawlessly. I don't just code—I think about your market, your users, your competition, and what actually matters for growth. I ask the right questions, challenge assumptions, and build only what's necessary to validate your core hypothesis. This is how I'll become the best at what I do, and how you'll get a product that resonates with your market.
+            Right now, my goal is to build SaaS MVPs for founders and startups to maximize my skillset and help validate ideas that could become real businesses. I want to work with early-stage founders who have a vision but need someone who can move fast, think strategically, and execute flawlessly. I don't just codeI think about your market, your users, your competition, and what actually matters for growth. I ask the right questions, challenge assumptions, and build only what's necessary to validate your core hypothesis. This is how I'll become the best at what I do, and how you'll get a product that resonates with your market.
           </p>
           <p className="font-mono text-xs sm:text-sm text-white/70 leading-relaxed">
-            I combine strategic thinking with proven development practices to deliver functional, market-ready products in 2-3 weeks. Every project is tailored to your specific market assumptions and growth goals. I use modern tech stacks (Next.js, TypeScript, Tailwind, Supabase), focus on performance and user experience, and build with scalability in mind from day one. You get a product that works, scales, and is ready for real users. More importantly, you get a founder who understands your business and can help you navigate the next phase—whether that's raising capital, acquiring users, or iterating based on feedback.
+            I combine strategic thinking with proven development practices to deliver functional, market-ready products in 2-3 weeks. Every project is tailored to your specific market assumptions and growth goals. I use modern tech stacks (Next.js, TypeScript, Tailwind, Supabase), focus on performance and user experience, and build with scalability in mind from day one. You get a product that works, scales, and is ready for real users. More importantly, you get a founder who understands your business and can help you navigate the next phasewhether that's raising capital, acquiring users, or iterating based on feedback.
           </p>
         </div>
       </section>

@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Services — SaaS & MVP Development",
+  title: "Services  SaaS & MVP Development",
   description:
     "SaaS development services by Muhammad Tanveer Abbas: Idea Validation, Rapid Development, User Acquisition, and Investor-Ready MVPs for founders.",
   alternates: { canonical: "https://muhammadtanveerabbas.vercel.app/services" },
@@ -74,7 +74,7 @@ export default function ServicesPage() {
           End-to-end SaaS MVP development designed to validate your ideas, attract users, and showcase traction to investors.
         </p>
         <p className="font-mono text-white/70 mt-4 text-sm">
-          Projects typically start at $1,500 — scoped to your idea and timeline.
+          Projects typically start at $1,500  scoped to your idea and timeline.
         </p>
       </section>
 

@@ -213,7 +213,7 @@ export function ContactForm() {
               </a>
               <div className="flex items-center gap-4">
                 <MapPin size={20} />
-                Available Worldwide (PKT — UTC+5)
+                Available Worldwide (PKT  UTC+5)
               </div>
               <div className="flex items-center gap-4">
                 <Clock size={20} />
