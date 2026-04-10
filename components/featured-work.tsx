@@ -45,13 +45,19 @@ export function FeaturedWork() {
               className="group relative overflow-hidden border border-white/10 hover:border-[#4a0dbc] transition-colors duration-300 bg-white/2"
             >
               <div className="aspect-video overflow-hidden bg-black/50">
+                {/*
+                  Original had style={{ willChange: "transform" }} statically on every image.
+                  This permanently allocated a compositor layer per image even when not hovered.
+                  Fix: removed the static inline style. The CSS `transition-transform` class
+                  is sufficient — the browser promotes the layer on hover when the transform
+                  actually begins. No visual change; saves 2 permanent compositor layers.
+                */}
                 <Image
                   src={project.image}
                   alt={project.title}
                   width={800}
                   height={450}
                   className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-                  style={{ willChange: "transform" }}
                 />
               </div>
               <div className="p-5 md:p-6 flex items-start justify-between gap-4">

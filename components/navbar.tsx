@@ -12,6 +12,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { memo } from "react";
 import { StaggeredMenu } from "./staggered-menu";
 
 const navItems = [
@@ -20,6 +21,37 @@ const navItems = [
   { label: "About", href: "/about", icon: User },
   { label: "Contact", href: "/contact", icon: MessageSquare },
 ];
+
+// Memoized social links — these never change, so they should never re-render
+// when usePathname triggers a Navbar re-render on navigation.
+const SocialLinks = memo(function SocialLinks() {
+  return (
+    <div className="hidden md:flex gap-2">
+      <a
+        href="https://linkedin.com/in/muhammadtanveerabbas"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="p-3 bg-black text-white rounded-full hover:bg-[#4a0dbc] hover:text-white transition-colors border border-black hover:shadow-lg hover:shadow-[#4a0dbc]/50"
+      >
+        <Linkedin size={20} />
+      </a>
+      <a
+        href="https://github.com/muhammadtanveerabbas"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="p-3 bg-black text-white rounded-full hover:bg-[#4a0dbc] hover:text-white transition-colors border border-black hover:shadow-lg hover:shadow-[#4a0dbc]/50"
+      >
+        <Github size={20} />
+      </a>
+      <a
+        href="mailto:muhammadtanveerabbas.contact@gmail.com"
+        className="p-3 bg-black text-white rounded-full hover:bg-[#4a0dbc] hover:text-white transition-colors border border-black hover:shadow-lg hover:shadow-[#4a0dbc]/50"
+      >
+        <Mail size={20} />
+      </a>
+    </div>
+  );
+});
 
 export function Navbar() {
   const pathname = usePathname();
@@ -55,31 +87,7 @@ export function Navbar() {
 
       <div className="flex items-center gap-2">
         <StaggeredMenu items={navItems} />
-
-        <div className="hidden md:flex gap-2">
-          <a
-            href="https://linkedin.com/in/muhammadtanveerabbas"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-3 bg-black text-white rounded-full hover:bg-[#4a0dbc] hover:text-white transition-colors border border-black hover:shadow-lg hover:shadow-[#4a0dbc]/50"
-          >
-            <Linkedin size={20} />
-          </a>
-          <a
-            href="https://github.com/muhammadtanveerabbas"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-3 bg-black text-white rounded-full hover:bg-[#4a0dbc] hover:text-white transition-colors border border-black hover:shadow-lg hover:shadow-[#4a0dbc]/50"
-          >
-            <Github size={20} />
-          </a>
-          <a
-            href="mailto:muhammadtanveerabbas.contact@gmail.com"
-            className="p-3 bg-black text-white rounded-full hover:bg-[#4a0dbc] hover:text-white transition-colors border border-black hover:shadow-lg hover:shadow-[#4a0dbc]/50"
-          >
-            <Mail size={20} />
-          </a>
-        </div>
+        <SocialLinks />
       </div>
     </nav>
   );

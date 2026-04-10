@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback, memo } from "react";
 import { Plus, Minus } from "lucide-react";
 
 const faqs = [
@@ -46,8 +46,53 @@ const faqs = [
   },
 ];
 
+interface FaqItemProps {
+  faq: { q: string; a: string };
+  index: number;
+  isOpen: boolean;
+  onToggle: (index: number) => void;
+}
+
+/*
+  Original: all 10 FAQ items lived inside Faq() and re-rendered together whenever
+  `open` state changed — because the entire list was in one component.
+  Every click re-rendered all 10 items even though only 1 changed.
+
+  Fix: extract each item into a memoized FaqItem component. React.memo does a
+  shallow prop comparison — only the item whose `isOpen` prop actually changed
+  will re-render. The other 9 items are skipped entirely.
+*/
+const FaqItem = memo(function FaqItem({ faq, index, isOpen, onToggle }: FaqItemProps) {
+  return (
+    <div className="border-t border-white/10">
+      <button
+        onClick={() => onToggle(index)}
+        className="w-full flex items-start justify-between gap-4 py-5 md:py-7 text-left group"
+      >
+        <span className="font-serif text-base md:text-xl font-bold uppercase text-white group-hover:text-[#4a0dbc] transition-colors duration-200 leading-snug">
+          {faq.q}
+        </span>
+        <span className="shrink-0 mt-0.5 text-[#4a0dbc]">
+          {isOpen ? <Minus size={18} /> : <Plus size={18} />}
+        </span>
+      </button>
+      {isOpen && (
+        <div className="pb-5 md:pb-7 pr-6 md:pr-10">
+          <p className="font-mono text-sm text-white/55 leading-relaxed">{faq.a}</p>
+        </div>
+      )}
+    </div>
+  );
+});
+
 export function Faq() {
   const [open, setOpen] = useState<number | null>(null);
+
+  // useCallback ensures the toggle function reference is stable across renders,
+  // so memo'd FaqItem children don't re-render due to a new function reference.
+  const handleToggle = useCallback((index: number) => {
+    setOpen((prev) => (prev === index ? null : index));
+  }, []);
 
   return (
     <section className="bg-black py-16 md:py-32 border-t border-white/10">
@@ -61,24 +106,13 @@ export function Faq() {
 
         <div className="max-w-3xl mx-auto">
           {faqs.map((faq, i) => (
-            <div key={i} className="border-t border-white/10">
-              <button
-                onClick={() => setOpen(open === i ? null : i)}
-                className="w-full flex items-start justify-between gap-4 py-5 md:py-7 text-left group"
-              >
-                <span className="font-serif text-base md:text-xl font-bold uppercase text-white group-hover:text-[#4a0dbc] transition-colors duration-200 leading-snug">
-                  {faq.q}
-                </span>
-                <span className="shrink-0 mt-0.5 text-[#4a0dbc]">
-                  {open === i ? <Minus size={18} /> : <Plus size={18} />}
-                </span>
-              </button>
-              {open === i && (
-                <div className="pb-5 md:pb-7 pr-6 md:pr-10">
-                  <p className="font-mono text-sm text-white/55 leading-relaxed">{faq.a}</p>
-                </div>
-              )}
-            </div>
+            <FaqItem
+              key={i}
+              faq={faq}
+              index={i}
+              isOpen={open === i}
+              onToggle={handleToggle}
+            />
           ))}
           <div className="border-t border-white/10" />
         </div>

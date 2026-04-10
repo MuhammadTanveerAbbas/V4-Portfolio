@@ -100,13 +100,20 @@ export function DarkVeil({
     const canvas = ref.current as HTMLCanvasElement;
     const parent = canvas.parentElement as HTMLElement;
 
+    // Cap DPR at 1 on mobile (≤768px) to halve pixel count on small screens,
+    // and at 1.5 on desktop. Visual difference is imperceptible for a bg shader.
+    const isMobile = window.innerWidth <= 768;
+    const dprCap = isMobile ? 1 : 1.5;
+
     const renderer = new Renderer({
-      dpr: Math.min(window.devicePixelRatio, 1.5), // cap at 1.5 — 2x is overkill for bg
+      dpr: Math.min(window.devicePixelRatio, dprCap),
       canvas,
     });
 
     const gl = renderer.gl;
-    gl.canvas.style.willChange = "transform"; // promote to GPU layer
+    // `contain` keeps the canvas in its own compositor layer without
+    // the broader side-effects of willChange:"transform" (no extra stacking context).
+    gl.canvas.style.contain = "strict";
     const geometry = new Triangle(gl);
 
     const program = new Program(gl, {
@@ -125,29 +132,38 @@ export function DarkVeil({
 
     const mesh = new Mesh(gl, { geometry, program });
 
+    // Debounced resize — avoids thrashing on every pixel of a drag-resize
+    let resizeTimer: ReturnType<typeof setTimeout>;
     const resize = () => {
-      const w = parent.clientWidth,
-        h = parent.clientHeight;
-      renderer.setSize(w * resolutionScale, h * resolutionScale);
-      program.uniforms.uResolution.value.set(w, h);
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        const w = parent.clientWidth;
+        const h = parent.clientHeight;
+        renderer.setSize(w * resolutionScale, h * resolutionScale);
+        program.uniforms.uResolution.value.set(w, h);
+      }, 100);
     };
 
-    window.addEventListener("resize", resize);
-    resize();
+    window.addEventListener("resize", resize, { passive: true });
+    // Run immediately (no debounce) for the initial size
+    const w = parent.clientWidth;
+    const h = parent.clientHeight;
+    renderer.setSize(w * resolutionScale, h * resolutionScale);
+    program.uniforms.uResolution.value.set(w, h);
 
     const start = performance.now();
     let frame = 0;
     let lastTime = 0;
-    const TARGET_FPS = 30; // background effect doesn't need 60fps
+    // Background shader targets 30fps — halves GPU fragment work vs 60fps.
+    // The slow, organic animation is imperceptible at 30fps.
+    const TARGET_FPS = 30;
     const FRAME_INTERVAL = 1000 / TARGET_FPS;
 
     const loop = (now: number) => {
       frame = requestAnimationFrame(loop);
-      // Skip frames to target ~30fps — halves GPU load
+      if (document.hidden) return;
       if (now - lastTime < FRAME_INTERVAL) return;
       lastTime = now;
-      // Pause when tab is hidden
-      if (document.hidden) return;
       program.uniforms.uTime.value = ((now - start) / 1000) * speed;
       renderer.render({ scene: mesh });
     };
@@ -156,7 +172,10 @@ export function DarkVeil({
 
     return () => {
       cancelAnimationFrame(frame);
+      clearTimeout(resizeTimer);
       window.removeEventListener("resize", resize);
+      // Explicitly lose the WebGL context on unmount to free GPU memory
+      gl.getExtension("WEBGL_lose_context")?.loseContext();
     };
   }, [
     hueShift,

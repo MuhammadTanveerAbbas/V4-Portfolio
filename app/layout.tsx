@@ -99,7 +99,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${_geistMono.variable} ${_playfair.variable}`}>
+    <html lang="en" className={`${_geistMono.variable} ${_playfair.variable}`} data-scroll-behavior="smooth">
       <body className="font-mono antialiased">
         <JsonLd />
         {children}

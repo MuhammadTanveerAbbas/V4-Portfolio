@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Menu, Linkedin, Github, Mail } from "lucide-react";
 import Link from "next/link";
@@ -21,14 +21,28 @@ export function StaggeredMenu({ items }: StaggeredMenuProps) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
+  const close = useCallback(() => setOpen(false), []);
+
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
+    if (!open) return;
+
+    /*
+      Original: document.body.style.overflow = "hidden" / "unset"
+      Problem: changing `overflow` on body forces a synchronous layout recalculation
+      (reflow) and can cause a layout shift if the scrollbar disappears and the
+      page width changes by ~15px.
+
+      Fix: use padding-right to compensate for the scrollbar width before hiding
+      overflow, preventing the layout shift. The scrollbar width is measured once
+      via a cheap offsetWidth diff — no continuous reads.
+    */
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.paddingRight = `${scrollbarWidth}px`;
+    document.body.style.overflow = "hidden";
+
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
     };
   }, [open]);
 
@@ -36,7 +50,7 @@ export function StaggeredMenu({ items }: StaggeredMenuProps) {
     <div className="md:hidden">
       <button
         onClick={() => setOpen(!open)}
-        className="p-2 text-white hover:text-[#4a0dbc] transition-colors duration-300 relative z-[100]"
+        className="p-2 text-white hover:text-[#4a0dbc] transition-colors duration-300 relative z-100"
         aria-label={open ? "Close menu" : "Open menu"}
       >
         {open ? <X size={24} /> : <Menu size={24} />}
@@ -51,11 +65,16 @@ export function StaggeredMenu({ items }: StaggeredMenuProps) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              onClick={() => setOpen(false)}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60]"
+              onClick={close}
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-60"
             />
 
-            {/* Menu Panel */}
+            {/*
+              Menu Panel — spring animation kept identical.
+              The x: "100%" → x: 0 transition is a CSS transform (translateX),
+              which runs on the compositor thread and doesn't block the main thread.
+              Framer Motion uses transform under the hood for x/y motion values.
+            */}
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
@@ -65,7 +84,7 @@ export function StaggeredMenu({ items }: StaggeredMenuProps) {
                 damping: 30,
                 stiffness: 300,
               }}
-              className="fixed top-0 right-0 h-screen w-full sm:w-96 bg-black z-[70]"
+              className="fixed top-0 right-0 h-screen w-full sm:w-96 bg-black z-70"
             >
               <div className="flex flex-col h-full p-6">
                 {/* Header */}
@@ -96,7 +115,7 @@ export function StaggeredMenu({ items }: StaggeredMenuProps) {
                     >
                       <Link
                         href={item.href}
-                        onClick={() => setOpen(false)}
+                        onClick={close}
                         className={`font-serif text-3xl font-black uppercase transition-all duration-300 flex items-center gap-2 leading-tight group ${
                           pathname === item.href
                             ? "text-[#4a0dbc]"
