@@ -85,10 +85,7 @@ export const metadata: Metadata = {
     },
   },
 
-  verification: {
-    google: "googlebdae41d34cb8b1e0",
-    // bing: "REPLACE_WITH_BING_VERIFICATION_CODE",
-  },
+  verification: {},
 
 
 };
