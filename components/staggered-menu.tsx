@@ -84,7 +84,7 @@ export function StaggeredMenu({ items }: StaggeredMenuProps) {
                 damping: 30,
                 stiffness: 300,
               }}
-              className="fixed top-0 right-0 h-screen w-full sm:w-96 bg-black z-70"
+              className="fixed top-0 right-0 h-screen w-full sm:w-96 bg-black z-110"
             >
               <div className="flex flex-col h-full p-6">
                 {/* Header */}
