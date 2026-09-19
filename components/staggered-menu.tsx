@@ -1,23 +1,19 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { X, Menu, Linkedin, Github, Mail } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Github, Linkedin, Mail, Menu, X, type LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LucideIcon } from "lucide-react";
+import { useCallback, useEffect, useState } from "react";
+import { siteConfig } from "@/lib/site";
 
-interface MenuItem {
+export interface MenuItem {
   label: string;
   href: string;
-  icon: LucideIcon;
+  icon?: LucideIcon;
 }
 
-interface StaggeredMenuProps {
-  items: MenuItem[];
-}
-
-export function StaggeredMenu({ items }: StaggeredMenuProps) {
+export function StaggeredMenu({ items }: { items: MenuItem[] }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
@@ -27,39 +23,46 @@ export function StaggeredMenu({ items }: StaggeredMenuProps) {
     if (!open) return;
 
     /*
-      Original: document.body.style.overflow = "hidden" / "unset"
-      Problem: changing `overflow` on body forces a synchronous layout recalculation
-      (reflow) and can cause a layout shift if the scrollbar disappears and the
-      page width changes by ~15px.
-
-      Fix: use padding-right to compensate for the scrollbar width before hiding
-      overflow, preventing the layout shift. The scrollbar width is measured once
-      via a cheap offsetWidth diff  no continuous reads.
+      Hiding overflow on the body would cause a layout shift when the scrollbar
+      disappears, so the scrollbar width is measured once and compensated with
+      padding instead.
     */
     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
     document.body.style.paddingRight = `${scrollbarWidth}px`;
     document.body.style.overflow = "hidden";
 
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") close();
+    };
+    window.addEventListener("keydown", onKeyDown);
+
     return () => {
       document.body.style.overflow = "";
       document.body.style.paddingRight = "";
+      window.removeEventListener("keydown", onKeyDown);
     };
-  }, [open]);
+  }, [open, close]);
 
   return (
     <div className="md:hidden">
       <button
+        type="button"
         onClick={() => setOpen(!open)}
-        className="p-2 text-white hover:text-[#4a0dbc] transition-colors duration-300 relative z-100"
+        aria-expanded={open}
+        aria-controls="mobile-menu"
         aria-label={open ? "Close menu" : "Open menu"}
+        className="p-2 text-white hover:text-[#4a0dbc] transition-colors duration-300 relative z-110"
       >
-        {open ? <X size={24} /> : <Menu size={24} />}
+        {open ? (
+          <X size={24} aria-hidden="true" />
+        ) : (
+          <Menu size={24} aria-hidden="true" />
+        )}
       </button>
 
       <AnimatePresence>
         {open && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -67,27 +70,25 @@ export function StaggeredMenu({ items }: StaggeredMenuProps) {
               transition={{ duration: 0.3 }}
               onClick={close}
               className="fixed inset-0 bg-black/60 backdrop-blur-sm z-60"
+              aria-hidden="true"
             />
 
             {/*
-              Menu Panel  spring animation kept identical.
-              The x: "100%" → x: 0 transition is a CSS transform (translateX),
-              which runs on the compositor thread and doesn't block the main thread.
-              Framer Motion uses transform under the hood for x/y motion values.
+              x from 100% to 0 is a composited transform, so the spring does not
+              block the main thread.
             */}
             <motion.div
+              id="mobile-menu"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Site menu"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{
-                type: "spring",
-                damping: 30,
-                stiffness: 300,
-              }}
-              className="fixed top-0 right-0 h-screen w-full sm:w-96 bg-black z-110"
+              transition={{ type: "spring", damping: 30, stiffness: 300 }}
+              className="fixed top-0 right-0 h-screen w-full sm:w-96 bg-black z-100"
             >
               <div className="flex flex-col h-full p-6">
-                {/* Header */}
                 <div className="flex items-center mb-12">
                   <motion.span
                     initial={{ opacity: 0, x: -20 }}
@@ -95,11 +96,10 @@ export function StaggeredMenu({ items }: StaggeredMenuProps) {
                     transition={{ delay: 0.2 }}
                     className="font-serif text-xl font-black uppercase text-gray-400"
                   >
-                    ✚ Explore Pages
+                    &#10010; Explore
                   </motion.span>
                 </div>
 
-                {/* Menu Items */}
                 <div className="flex flex-col gap-6 flex-1">
                   {items.map((item, i) => (
                     <motion.div
@@ -116,28 +116,30 @@ export function StaggeredMenu({ items }: StaggeredMenuProps) {
                       <Link
                         href={item.href}
                         onClick={close}
+                        aria-current={pathname === item.href ? "page" : undefined}
                         className={`font-serif text-3xl font-black uppercase transition-all duration-300 flex items-center gap-2 leading-tight group ${
                           pathname === item.href
                             ? "text-[#4a0dbc]"
                             : "text-white hover:text-[#4a0dbc]"
                         }`}
                       >
-                        <span
-                          className={`p-1.5 rounded transition-colors ${
-                            pathname === item.href
-                              ? "text-[#4a0dbc]"
-                              : "text-gray-400 group-hover:text-[#4a0dbc]"
-                          }`}
-                        >
-                          <item.icon size={22} />
-                        </span>
+                        {item.icon ? (
+                          <span
+                            className={`p-1.5 rounded transition-colors ${
+                              pathname === item.href
+                                ? "text-[#4a0dbc]"
+                                : "text-gray-400 group-hover:text-[#4a0dbc]"
+                            }`}
+                          >
+                            <item.icon size={22} aria-hidden="true" />
+                          </span>
+                        ) : null}
                         {item.label}
                       </Link>
                     </motion.div>
                   ))}
                 </div>
 
-                {/* Social Links */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -145,26 +147,29 @@ export function StaggeredMenu({ items }: StaggeredMenuProps) {
                   className="flex gap-3 pt-6 pb-12 border-t border-gray-700"
                 >
                   <a
-                    href="https://linkedin.com/in/muhammadtanveerabbas"
+                    href={siteConfig.social.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="Muhammad Tanveer Abbas on LinkedIn"
                     className="p-3 bg-black/50 text-gray-400 rounded-full hover:text-white hover:bg-[#4a0dbc]/20 transition-all border border-gray-600 hover:border-[#4a0dbc]"
                   >
-                    <Linkedin size={20} />
+                    <Linkedin size={20} aria-hidden="true" />
                   </a>
                   <a
-                    href="https://github.com/muhammadtanveerabbas"
+                    href={siteConfig.social.github}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="Muhammad Tanveer Abbas on GitHub"
                     className="p-3 bg-black/50 text-gray-400 rounded-full hover:text-white hover:bg-[#4a0dbc]/20 transition-all border border-gray-600 hover:border-[#4a0dbc]"
                   >
-                    <Github size={20} />
+                    <Github size={20} aria-hidden="true" />
                   </a>
                   <a
-                    href="mailto:muhammadtanveerabbas.contact@gmail.com"
+                    href={`mailto:${siteConfig.email}`}
+                    aria-label={`Email ${siteConfig.name}`}
                     className="p-3 bg-black/50 text-gray-400 rounded-full hover:text-white hover:bg-[#4a0dbc]/20 transition-all border border-gray-600 hover:border-[#4a0dbc]"
                   >
-                    <Mail size={20} />
+                    <Mail size={20} aria-hidden="true" />
                   </a>
                 </motion.div>
               </div>

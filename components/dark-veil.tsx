@@ -98,6 +98,7 @@ export function DarkVeil({
 
   useEffect(() => {
     const canvas = ref.current as HTMLCanvasElement;
+    if (!canvas || !canvas.parentElement) return;
     const parent = canvas.parentElement as HTMLElement;
 
     // Cap DPR at 1 on mobile (≤768px) to halve pixel count on small screens,
@@ -106,7 +107,7 @@ export function DarkVeil({
     const dprCap = isMobile ? 1 : 1.5;
 
     const renderer = new Renderer({
-      dpr: Math.min(window.devicePixelRatio, dprCap),
+      dpr: Math.min(window.devicePixelRatio ?? 1, dprCap),
       canvas,
     });
 
@@ -154,38 +155,51 @@ export function DarkVeil({
     const start = performance.now();
     let frame = 0;
     let lastTime = 0;
-    // Background shader targets 30fps  halves GPU fragment work vs 60fps.
+    // Background shader targets 30fps and halves GPU fragment work vs 60fps.
     // The slow, organic animation is imperceptible at 30fps.
     const TARGET_FPS = 30;
     const FRAME_INTERVAL = 1000 / TARGET_FPS;
+    // Visitors who ask for reduced motion still get the visual, but it renders
+    // one static frame instead of animating forever.
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    let cancelled = false;
+
+    const renderFrame = (elapsedSeconds: number) => {
+      if (cancelled || gl.isContextLost()) return;
+      program.uniforms.uTime.value = elapsedSeconds * speed;
+      renderer.render({ scene: mesh });
+    };
+
+    if (prefersReducedMotion) {
+      renderFrame(0);
+      return () => {
+        cancelled = true;
+        clearTimeout(resizeTimer);
+        window.removeEventListener("resize", resize);
+        gl.getExtension("WEBGL_lose_context")?.loseContext();
+      };
+    }
 
     const loop = (now: number) => {
+      if (cancelled) return;
       frame = requestAnimationFrame(loop);
       if (document.hidden) return;
       if (now - lastTime < FRAME_INTERVAL) return;
       lastTime = now;
-      program.uniforms.uTime.value = ((now - start) / 1000) * speed;
-      renderer.render({ scene: mesh });
+      renderFrame((now - start) / 1000);
     };
 
     frame = requestAnimationFrame(loop);
 
     return () => {
+      cancelled = true;
       cancelAnimationFrame(frame);
       clearTimeout(resizeTimer);
       window.removeEventListener("resize", resize);
-      // Explicitly lose the WebGL context on unmount to free GPU memory
       gl.getExtension("WEBGL_lose_context")?.loseContext();
     };
-  }, [
-    hueShift,
-    noiseIntensity,
-    scanlineIntensity,
-    speed,
-    scanlineFrequency,
-    warpAmount,
-    resolutionScale,
-  ]);
+  }, []);
 
   return <canvas ref={ref} className="w-full h-full block absolute inset-0" />;
 }

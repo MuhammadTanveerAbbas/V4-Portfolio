@@ -1,24 +1,36 @@
 const steps = [
   {
     number: "01",
-    title: "Validate",
-    duration: "Days 1–3",
-    desc: "We define your core assumption, map the market, and scope the exact MVP needed to test it. No bloat, no guessing.",
-    items: ["Market research", "Competitor analysis", "MVP scope definition", "User flow mapping"],
+    title: "Understand",
+    desc: "I start with the business problem rather than the code. How the work happens today, who is affected, what success looks like, and the smallest version worth building.",
+    items: [
+      "A conversation about the problem",
+      "How the work happens today",
+      "Scope and priorities",
+      "A written plan and fixed price",
+    ],
   },
   {
     number: "02",
     title: "Build",
-    duration: "Days 4–14",
-    desc: "Full-stack development using Next.js, Supabase, and Stripe. You get daily updates and a staging link from day one.",
-    items: ["Database + auth setup", "Core feature development", "Payment integration", "Daily progress updates"],
+    desc: "The solution is designed and built in working increments, so progress is visible early and direction can change before it becomes expensive.",
+    items: [
+      "Solution design and structure",
+      "Working software in increments",
+      "Plain language updates as it goes",
+      "A link you can open at any time",
+    ],
   },
   {
     number: "03",
-    title: "Launch",
-    duration: "Days 15–21",
-    desc: "QA, deployment, analytics, and onboarding flow. You leave with a live product and a growth plan.",
-    items: ["Testing & QA", "Production deployment", "Analytics setup", "User onboarding flow"],
+    title: "Ship and support",
+    desc: "The software goes in front of real users, issues are fixed as they surface, and the work is documented so it can be maintained long after launch.",
+    items: [
+      "Launch and onboarding",
+      "Fixes as issues surface",
+      "Documentation and handover",
+      "Improvements after launch",
+    ],
   },
 ];
 
@@ -42,8 +54,10 @@ export function Process() {
               }`}
             >
               <div className="flex items-start justify-between">
-                <span className="font-mono text-xs text-[#4a0dbc] uppercase tracking-widest">{step.duration}</span>
-                <span className="font-serif text-4xl md:text-5xl font-black text-white/10 leading-none">{step.number}</span>
+                <span className="font-mono text-xs text-[#4a0dbc] uppercase tracking-widest">Step {step.number}</span>
+                <span className="font-serif text-4xl md:text-5xl font-black text-white/10 leading-none" aria-hidden="true">
+                  {step.number}
+                </span>
               </div>
               <h3 className="font-serif text-3xl md:text-5xl font-black uppercase text-white leading-none group-hover:text-[#4a0dbc] transition-colors duration-300">
                 {step.title}
@@ -51,8 +65,11 @@ export function Process() {
               <p className="font-mono text-sm text-white/50 leading-relaxed">{step.desc}</p>
               <ul className="flex flex-col gap-2 mt-auto pt-5 border-t border-white/10">
                 {step.items.map((item) => (
-                  <li key={item} className="font-mono text-xs text-white/40 uppercase tracking-wide flex items-center gap-2">
-                    <span className="w-1 h-1 rounded-full bg-[#4a0dbc] shrink-0" />
+                  <li
+                    key={item}
+                    className="font-mono text-xs text-white/40 uppercase tracking-wide flex items-center gap-2"
+                  >
+                    <span className="w-1 h-1 rounded-full bg-[#4a0dbc] shrink-0" aria-hidden="true" />
                     {item}
                   </li>
                 ))}

@@ -1,17 +1,16 @@
 <div align="center">
 
-  <img src="public/Logo.png" alt="Muhammad Tanveer Abbas Logo" width="80" height="80" />
+  <img src="public/Logo.png" alt="Muhammad Tanveer Abbas" width="80" height="80" />
 
-# Muhammad Tanveer Abbas Portfolio v4
+# Muhammad Tanveer Abbas | Portfolio
 
-**SaaS Developer & MVP Builder helping early-stage founders validate ideas and ship production-ready products in 2–3 weeks.**
+**Software developer building practical business software and SaaS products for B2B companies.**
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge)](https://muhammadtanveerabbas.vercel.app)
+[![Live site](https://img.shields.io/badge/Live-Site-brightgreen?style=for-the-badge)](https://muhammadtanveerabbas.vercel.app)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://typescriptlang.org)
 [![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
-[![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 
 </div>
 
@@ -19,213 +18,148 @@
 
 ## Overview
 
-This is the v4 portfolio of Muhammad Tanveer Abbas a SaaS developer and MVP builder based in Pakistan, working with early-stage founders in the USA, UK, and Europe. The site showcases 6 shipped SaaS products, a transparent build process, and a direct path for founders to start a project. It's built with Next.js 15, Framer Motion, and a dark, editorial design system fast, SEO-optimized, and fully responsive.
+This repository contains the personal website of Muhammad Tanveer Abbas, a
+software developer who builds practical business software and SaaS products for
+B2B companies. The site explains what he builds, shows four real products with
+case studies, and gives a direct way to start a project.
+
+The public copy is written for non-technical decision makers. Technical depth
+lives in the project case studies, where each build covers the problem, why
+existing approaches fall short, what was built, how it works, the decisions and
+trade offs, what was deliberately left out, lessons learned and the tools used.
 
 ---
 
-## ✨ Features
+## Pages
 
-- 🚀 **Animated Hero Section** Scroll-driven Framer Motion animations with a rotating badge and parallax veil effect
-- 📊 **Stats Bar** Live metrics: 6 SaaS products shipped, 2–3 week timeline, 100% hands-on execution
-- 🎨 **Marquee Ticker** Infinite scrolling tech/service marquee with smooth CSS animation
-- 💼 **Featured Work** Showcase of 6 real SaaS MVPs with project detail pages (problem, process, stack, metrics, lessons)
-- 🛠 **Services Section** Idea Validation, Rapid Development, User Acquisition, Investor Ready each with tag chips
-- ⚙️ **3-Step Process** Validate → Build → Launch with day-by-day breakdown per phase
-- 🧠 **Tech Stack Grid** Full breakdown of Frontend, Backend, Payments/AI, and Infra tools used across projects
-- 🤔 **Why Me Section** Honest comparison against agencies, freelancers, no-code tools, and in-house hiring
-- ❓ **FAQ Accordion** 10 common founder questions with memoized, performance-optimized accordion
-- 📬 **Contact Form** Web3Forms-powered form with name, email, company, idea, timeline, and additional details fields
-- 🌐 **Full SEO Setup** Metadata, Open Graph, Twitter cards, JSON-LD structured data, sitemap, robots.txt, Google Search Console verification
-- 📈 **Vercel Analytics** Built-in page view and event tracking via `@vercel/analytics`
-- 🌙 **Dark-first Design** Pure black background with `#4a0dbc` accent, Playfair Display serif + Geist Mono font pairing
+| Route | Purpose |
+| ----- | ------- |
+| `/` | Who Muhammad is, what he builds, services, the work, the process, why it works, FAQ |
+| `/work` | Project listing |
+| `/work/[slug]` | Case study for a project (problem, decisions, lessons, tools) |
+| `/services` | Services and how a project runs |
+| `/about` | About Muhammad and ways to work together |
+| `/contact` | Contact form, preselected when linked from a service |
+
+The four projects are Clario, Repurpose AI, Crivox and Flowbook.
 
 ---
 
-## 🛠 Tech Stack
+## Features
 
-| Category   | Technology                                        |
-| ---------- | ------------------------------------------------- |
-| Framework  | Next.js 15 (App Router)                           |
-| Language   | TypeScript 5 (strict mode)                        |
-| Styling    | Tailwind CSS v4 + shadcn/ui (Radix UI primitives) |
-| Animation  | Framer Motion 12                                  |
-| Forms      | React Hook Form + Zod + Web3Forms API             |
-| Fonts      | Playfair Display + Geist Mono (Google Fonts)      |
-| Analytics  | Vercel Analytics                                  |
-| Deployment | Vercel                                            |
+- **One source of truth for projects**: `lib/projects.ts` drives the home page, `/work`, `/work/[slug]`, page metadata, the sitemap and the structured data.
+- **One source of truth for services**: `lib/services.ts` drives the services sections and the contact form's service selector.
+- **Static project pages**: `generateStaticParams()` builds the four case studies at build time, unknown slugs return a real 404 via `notFound()`.
+- **SEO**: indexable metadata, canonical URLs, Open Graph and Twitter cards, JSON-LD (Person, WebSite, Service, ItemList, BreadcrumbList, CreativeWork), dynamic `robots.txt` and a sitemap that includes the project pages.
+- **Contact form**: Web3Forms with a hidden honeypot for spam protection and the access key supplied through an environment variable.
+- **Performance**: the WebGL background is loaded as a separate client chunk, frame throttled to 30fps, DPR capped on mobile, paused when the tab is hidden, and skipped entirely for visitors who prefer reduced motion.
+- **Accessibility**: skip to content link, labelled controls, `aria-expanded` on the mobile menu and FAQ, semantic landmarks, visible focus rings and reduced motion support.
+- **Security headers**: Content Security Policy, HSTS, Permissions Policy, `X-Content-Type-Options`, `X-Frame-Options` and `Referrer-Policy`.
 
 ---
 
+## Tech stack
+
+| Category | Technology |
+| -------- | ---------- |
+| Framework | Next.js 16 (App Router) |
+| Language | TypeScript (strict mode) |
+| Styling | Tailwind CSS v4 |
+| Animation | Framer Motion 12 |
+| WebGL background | OGL |
+| Fonts | Playfair Display + Geist Mono via `next/font` |
+| Forms | React (plain state) + Web3Forms |
+| Analytics | Vercel Analytics |
+| Deployment | Vercel |
+
 ---
 
-## 🚀 Quick Start
-
-### Prerequisites
-
-- Node.js 18+
-- pnpm (recommended) or npm
-
-### Installation
+## Getting started
 
 ```bash
-# 1. Clone the repo
-git clone https://github.com/MuhammadTanveerAbbas/v4-portfolio.git
-cd v4-portfolio
-
-# 2. Install dependencies
 pnpm install
-
-# 3. Set up environment variables
-cp .env.example .env.local
-# Fill in your values (see Environment Variables section below)
-
-# 4. Run the development server
 pnpm dev
+```
 
-# 5. Open in browser
-http://localhost:3000
+Open [http://localhost:3000](http://localhost:3000).
+
+### Environment variables
+
+Copy `.env.example` to `.env.local` and fill in the values:
+
+| Variable | Required | Description |
+| -------- | -------- | ----------- |
+| `NEXT_PUBLIC_SITE_URL` | No | Canonical site URL used in metadata |
+| `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` | Yes | Web3Forms access key for the contact form |
+
+---
+
+## Available scripts
+
+| Command | Description |
+| ------- | ----------- |
+| `pnpm dev` | Start the development server |
+| `pnpm build` | Production build, including the TypeScript check |
+| `pnpm start` | Start the production server |
+| `pnpm lint` | Run ESLint |
+| `pnpm typecheck` | Run the TypeScript compiler check |
+
+---
+
+## Project structure
+
+```text
+app/
+  about/            # About page
+  contact/          # Contact page with the form
+  services/         # Services page
+  work/             # Work listing + [slug] case studies
+  error.tsx         # Error boundary styled like the site
+  globals.css       # Design tokens and keyframes
+  layout.tsx        # Root layout, metadata, skip link, analytics
+  loading.tsx       # Loading state styled like the site
+  not-found.tsx     # 404 styled like the site
+  robots.ts         # robots.txt
+  sitemap.ts        # Sitemap, derived from the project data
+components/         # Page sections and shared components
+lib/
+  projects.ts       # Project source of truth
+  services.ts       # Services source of truth
+  site.ts           # Site identity, navigation and contact details
+  utils.ts          # cn() helper
+public/
+  projects/         # Project screenshots
+  Logo.png          # Logo
 ```
 
 ---
 
-## 🔐 Environment Variables
+## Deployment
 
-Create a `.env.local` file in the root directory:
+The site is deployed on Vercel.
 
-```env
-# Site Configuration
-NEXT_PUBLIC_SITE_URL=https://muhammadtanveerabbas.vercel.app
-
-# Web3Forms API Key (Get from https://web3forms.com)
-NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=your_web3forms_access_key_here
-
-# Google Search Console Verification
-NEXT_PUBLIC_GOOGLE_VERIFICATION=your_google_verification_code_here
-
-# Google Analytics
-NEXT_PUBLIC_GOOGLE_ANALYTICS_ID=your_google_analytics_id_here
-```
-
-Get your keys:
-
-- Web3Forms: https://web3forms.com
-- Google Search Console: https://search.google.com/search-console
-- Google Analytics: https://analytics.google.com
+1. Import the repository into Vercel
+2. Add the environment variables from the table above
+3. Deploy
 
 ---
 
-## 📁 Project Structure
-
-```
-v4-portfolio/
-├── app/
-│   ├── about/           # About page
-│   ├── contact/         # Contact page
-│   ├── services/        # Services page
-│   ├── work/            # Work listing + [slug] detail pages
-│   ├── globals.css      # Global styles
-│   ├── layout.tsx       # Root layout (metadata, fonts, analytics)
-│   ├── page.tsx         # Home page
-│   ├── robots.ts        # Robots.txt generation
-│   └── sitemap.ts       # Sitemap generation
-├── components/
-│   ├── ui/              # shadcn/ui primitives (50 components)
-│   ├── contact-form.tsx
-│   ├── faq.tsx
-│   ├── featured-work.tsx
-│   ├── footer.tsx
-│   ├── hero.tsx
-│   ├── JsonLd.tsx       # Structured data (JSON-LD)
-│   ├── marquee-section.tsx
-│   ├── navbar.tsx
-│   ├── process.tsx
-│   ├── service-card.tsx
-│   ├── services.tsx
-│   ├── stats-bar.tsx
-│   ├── tech-stack.tsx
-│   └── why-me.tsx
-├── hooks/               # Custom React hooks
-├── lib/                 # Utility functions
-├── public/
-│   ├── projects/        # Project screenshots (6 SaaS products)
-│   └── Logo.png
-├── .env.example
-├── package.json
-└── README.md
-```
-
----
-
-## 📦 Available Scripts
-
-| Command      | Description                                |
-| ------------ | ------------------------------------------ |
-| `pnpm dev`   | Start development server on localhost:3000 |
-| `pnpm build` | Build for production                       |
-| `pnpm start` | Start production server                    |
-| `pnpm lint`  | Run ESLint                                 |
-
----
-
-## 🌐 Deployment
-
-This project is deployed on **Vercel**.
-
-### Deploy Your Own
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/MuhammadTanveerAbbas/v4-portfolio)
-
-1. Click the button above
-2. Connect your GitHub account
-3. Add environment variables in the Vercel dashboard
-4. Deploy
-
----
-
-## 🗺 Roadmap
-
-- [x] Hero with scroll-driven animations
-- [x] 6 SaaS project case studies with full detail pages
-- [x] Services, Process, Tech Stack, Why Me, FAQ sections
-- [x] Web3Forms contact form with validation
-- [x] Full SEO: metadata, OG, JSON-LD, sitemap, robots
-- [x] Vercel Analytics integration
-- [ ] Blog / writing section
-- [ ] Case study video walkthroughs
-- [ ] Dark/light theme toggle
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Feel free to:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
----
-
-## 📄 License
+## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
 
-## 👨‍💻 Built by The MVP Guy
+## Built by Muhammad Tanveer Abbas
 
 <div align="center">
 
 **Muhammad Tanveer Abbas**
-SaaS Developer | Building production-ready MVPs in 14–21 days
+Software Developer | Building practical software for B2B businesses
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-muhammadtanveerabbas.vercel.app-black?style=for-the-badge)](https://muhammadtanveerabbas.vercel.app)
-[![Twitter](https://img.shields.io/badge/Twitter-@m__tanveerabbas-1DA1F2?style=for-the-badge&logo=twitter)](https://x.com/m_tanveerabbas)
+[![Website](https://img.shields.io/badge/Website-muhammadtanveerabbas.vercel.app-black?style=for-the-badge)](https://muhammadtanveerabbas.vercel.app)
+[![X](https://img.shields.io/badge/X-@m__tanveerabbas-000000?style=for-the-badge&logo=x)](https://x.com/m_tanveerabbas)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/muhammadtanveerabbas)
 [![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=for-the-badge&logo=github)](https://github.com/MuhammadTanveerAbbas)
-
-_If this project helped you, please consider giving it a ⭐_
 
 </div>

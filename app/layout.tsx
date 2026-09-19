@@ -1,91 +1,87 @@
 import type React from "react";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist_Mono, Playfair_Display } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import JsonLd from "@/components/JsonLd";
+import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
-const _geistMono = Geist_Mono({
+const geistMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-geist-mono",
+  display: "swap",
 });
-const _playfair = Playfair_Display({
+
+const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-playfair",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://muhammadtanveerabbas.vercel.app"),
+  metadataBase: new URL(siteConfig.url),
 
   title: {
-    default: "Muhammad Tanveer Abbas | SaaS Developer & MVP Builder",
-    template: "%s | Muhammad Tanveer Abbas",
+    default: `${siteConfig.name} | ${siteConfig.role}`,
+    template: `%s | ${siteConfig.name}`,
   },
 
-  description:
-    "Muhammad Tanveer Abbas is a SaaS Developer and MVP Builder helping early-stage founders in the USA, UK, and Europe validate ideas, build fast, and launch scalable SaaS products in 2–3 weeks.",
+  description: siteConfig.description,
 
   keywords: [
     "Muhammad Tanveer Abbas",
-    "SaaS Developer",
-    "MVP Builder",
-    "SaaS MVP Development",
-    "Early Stage Founder",
+    "Software Developer",
+    "Business Software Developer",
+    "Custom Software Development",
+    "B2B Software",
+    "Internal Tools",
+    "Workflow Automation",
+    "SaaS Development",
+    "Web Application Development",
+    "Full Stack Developer",
     "Software Developer Pakistan",
-    "Next.js Developer",
-    "Full Stack SaaS Developer",
-    "MVP Development for Startups",
-    "SaaS for Founders",
-    "Build SaaS fast",
-    "Launch SaaS MVP",
-    "Startup Developer",
-    "Freelance SaaS Developer UK",
-    "Freelance SaaS Developer USA",
-    "SaaS Product Builder",
   ],
 
-  authors: [{ name: "Muhammad Tanveer Abbas", url: "https://muhammadtanveerabbas.vercel.app" }],
-  creator: "Muhammad Tanveer Abbas",
-  publisher: "Muhammad Tanveer Abbas",
-
-  alternates: {
-    canonical: "https://muhammadtanveerabbas.vercel.app",
-  },
+  authors: [{ name: siteConfig.name, url: siteConfig.url }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
 
   openGraph: {
     type: "profile",
     firstName: "Muhammad Tanveer",
     lastName: "Abbas",
-    username: "MuhammadTanveerAbbas",
-    gender: "male",
-    url: "https://muhammadtanveerabbas.vercel.app",
-    siteName: "Muhammad Tanveer Abbas",
-    title: "Muhammad Tanveer Abbas | SaaS Developer & MVP Builder",
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    title: `${siteConfig.name} | ${siteConfig.role}`,
     description:
-      "Helping early-stage founders validate ideas and launch SaaS MVPs in 2–3 weeks. Based globally, working with founders in USA, UK, and Europe.",
+      "Muhammad Tanveer Abbas builds practical business software and SaaS products for B2B companies: internal tools, customer applications, workflow systems and AI assisted products.",
     locale: "en_US",
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Muhammad Tanveer Abbas | SaaS Developer & MVP Builder",
+    title: `${siteConfig.name} | ${siteConfig.role}`,
     description:
-      "Helping early-stage founders validate ideas and ship SaaS products fast.",
+      "Practical business software and SaaS products for B2B companies.",
     creator: "@m_tanveerabbas",
   },
 
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
     googleBot: {
-      index: false,
-      follow: false,
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
     },
   },
+};
 
-  verification: {},
-
-
+export const viewport: Viewport = {
+  themeColor: "#000000",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({
@@ -94,8 +90,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${_geistMono.variable} ${_playfair.variable}`} data-scroll-behavior="smooth">
-      <body className="font-mono antialiased">
+    <html lang="en" className={`${geistMono.variable} ${playfair.variable}`} data-scroll-behavior="smooth">
+      <body id="top" className="font-mono antialiased">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-110 focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:font-mono focus:text-xs focus:font-bold focus:uppercase focus:text-black"
+        >
+          Skip to content
+        </a>
         <JsonLd />
         {children}
         <Analytics />

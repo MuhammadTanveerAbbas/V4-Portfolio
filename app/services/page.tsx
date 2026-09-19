@@ -1,101 +1,82 @@
-import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
-import { ArrowRight } from "lucide-react"
-import type { Metadata } from "next"
+import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+import type { Metadata } from "next";
+import { SERVICES } from "@/lib/services";
+import { absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Services  SaaS & MVP Development",
+  title: "Software Development Services",
   description:
-    "SaaS development services by Muhammad Tanveer Abbas: Idea Validation, Rapid Development, User Acquisition, and Investor-Ready MVPs for founders.",
-  alternates: { canonical: "https://muhammadtanveerabbas.vercel.app/services" },
-}
+    "Software development services for B2B businesses: business software, customer applications, workflow automation and AI assisted products, delivered as fixed price projects.",
+  alternates: { canonical: absoluteUrl("/services") },
+};
 
-const services = [
+const steps = [
   {
-    number: "01",
-    title: "Idea Validation",
-    description:
-      "I start by validating your core assumptions. Through market research, competitive analysis, and user interviews, I define the MVP scope that matters most.",
-    deliverables: ["Market Research", "User Interviews", "Competitive Analysis", "MVP Scope Definition"],
+    phase: "Step 1",
+    title: "Understand",
+    items: [
+      "A conversation about the problem",
+      "How the work happens today",
+      "What success looks like",
+      "A written scope and fixed price",
+    ],
   },
   {
-    number: "02",
-    title: "Rapid Development",
-    description:
-      "Using modern technologies and proven development processes, I build functional, scalable MVPs in 2-3 weeks. Speed without sacrificing quality.",
-    deliverables: ["Full Stack Development", "Database Design", "API Development", "Deployment"],
+    phase: "Step 2",
+    title: "Build",
+    items: [
+      "Solution design and structure",
+      "Working software in increments",
+      "Regular plain language updates",
+      "A link you can open at any time",
+    ],
   },
   {
-    number: "03",
-    title: "User Acquisition",
-    description:
-      "I help you attract early users through strategic positioning, growth tactics, and conversion optimization. Real traction matters to investors.",
-    deliverables: ["Growth Strategy", "Landing Page", "User Onboarding", "Analytics Setup"],
+    phase: "Step 3",
+    title: "Ship and support",
+    items: [
+      "Launch and team onboarding",
+      "Documentation and a handover",
+      "Fixes as issues surface",
+      "Improvements after launch",
+    ],
   },
-  {
-    number: "04",
-    title: "Investor Preparation",
-    description:
-      "Get your product and metrics ready for investor conversations. I help you build compelling demos and prepare your pitch materials.",
-    deliverables: ["Metrics Dashboard", "Demo Preparation", "Pitch Support", "Documentation"],
-  },
-]
-
-const process = [
-  {
-    phase: "Week 1",
-    title: "Discovery & Planning",
-    items: ["Define MVP scope", "Technical architecture", "User flows", "Design system"],
-  },
-  {
-    phase: "Week 2",
-    title: "Development",
-    items: ["Backend development", "Frontend implementation", "Database setup", "Integration"],
-  },
-  {
-    phase: "Week 3",
-    title: "Launch & Optimize",
-    items: ["Testing & QA", "Deployment", "User onboarding", "Analytics setup"],
-  },
-]
+];
 
 export default function ServicesPage() {
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main id="main" className="min-h-screen bg-black text-white">
       <Navbar />
 
       <section className="pt-32 pb-16 px-4 md:px-8">
         <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-[12vw] leading-[0.85] uppercase tracking-tighter">
-          SaaS MVP
+          Software
           <br />
           <span className="text-[#4a0dbc]">Services</span>
         </h1>
-        <p className="font-mono text-white/70 mt-8 max-w-xl">
-          End-to-end SaaS MVP development designed to validate your ideas, attract users, and showcase traction to investors.
-        </p>
-        <p className="font-mono text-white/70 mt-4 text-sm">
-          Projects typically start at $1,500  scoped to your idea and timeline.
+        <p className="font-mono text-white/70 mt-8 max-w-xl leading-relaxed">
+          I take a business problem from first conversation to software your team
+          and customers actually use. Projects are scoped and fixed price, with
+          no hourly billing.
         </p>
       </section>
 
       <section className="px-4 md:px-8 pb-24">
         <div className="border-t-2 border-white/30">
-          {services.map((service) => (
-            <div
-              key={service.number}
-              className="group border-b-2 border-white/30 py-12 hover:bg-white/5 transition-colors cursor-pointer"
-            >
+          {SERVICES.map((service) => (
+            <div key={service.slug} className="border-b-2 border-white/30 py-12">
               <div className="flex flex-col md:flex-row md:items-start gap-8">
                 <span className="font-mono text-[#4a0dbc] text-sm">{service.number}</span>
                 <div className="flex-1">
-                  <div className="flex items-center justify-between">
-                    <h2 className="font-serif text-4xl md:text-6xl uppercase tracking-tight">{service.title}</h2>
-                    <ArrowRight
-                      className="hidden md:block transform group-hover:translate-x-2 transition-transform"
-                      size={32}
-                    />
-                  </div>
-                  <p className="font-mono text-sm mt-6 max-w-2xl text-white/70">{service.description}</p>
+                  <h2 className="font-serif text-4xl md:text-6xl uppercase tracking-tight">
+                    {service.title}
+                  </h2>
+                  <p className="font-mono text-sm mt-6 max-w-2xl text-white/70 leading-relaxed">
+                    {service.summary}
+                  </p>
                   <div className="flex flex-wrap gap-2 mt-6">
                     {service.deliverables.map((item) => (
                       <span
@@ -106,6 +87,16 @@ export default function ServicesPage() {
                       </span>
                     ))}
                   </div>
+                  <Link
+                    href={`/contact?service=${service.slug}`}
+                    className="group mt-8 inline-flex items-center gap-2 font-mono text-sm uppercase text-white/70 hover:text-white transition-colors"
+                  >
+                    Discuss {service.title}
+                    <ArrowRight
+                      size={16}
+                      className="text-[#4a0dbc] group-hover:translate-x-1 transition-transform"
+                    />
+                  </Link>
                 </div>
               </div>
             </div>
@@ -114,16 +105,20 @@ export default function ServicesPage() {
       </section>
 
       <section className="px-4 md:px-8 pb-24">
-        <h2 className="font-serif text-4xl md:text-6xl uppercase tracking-tight mb-12">The Process</h2>
+        <h2 className="font-serif text-4xl md:text-6xl uppercase tracking-tight mb-12">
+          How a project runs
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {process.map((p) => (
-            <div key={p.phase} className="border-2 border-white/30 p-8">
-              <span className="font-mono text-[#4a0dbc] text-sm uppercase">{p.phase}</span>
-              <h3 className="font-serif text-2xl uppercase mt-4 mb-6">{p.title}</h3>
+          {steps.map((step) => (
+            <div key={step.phase} className="border-2 border-white/30 p-8">
+              <span className="font-mono text-[#4a0dbc] text-sm uppercase">{step.phase}</span>
+              <h3 className="font-serif text-2xl uppercase mt-4 mb-6">{step.title}</h3>
               <ul className="space-y-3">
-                {p.items.map((item) => (
+                {step.items.map((item) => (
                   <li key={item} className="font-mono text-sm text-white/70 flex items-start">
-                    <span className="text-[#4a0dbc] mr-3">→</span>
+                    <span className="text-[#4a0dbc] mr-3" aria-hidden="true">
+                      &rarr;
+                    </span>
                     {item}
                   </li>
                 ))}
@@ -135,20 +130,23 @@ export default function ServicesPage() {
 
       <section className="px-4 md:px-8 pb-24">
         <div className="bg-[#4a0dbc] p-8 md:p-16 shadow-lg shadow-[#4a0dbc]/40">
-          <h2 className="font-serif text-4xl md:text-6xl uppercase tracking-tight text-white">Ready to build?</h2>
-          <p className="font-mono text-white/90 mt-4 max-w-xl">
-            Let&apos;s discuss your idea and create a plan to validate it with a functional MVP.
+          <h2 className="font-serif text-4xl md:text-6xl uppercase tracking-tight text-white">
+            Have something in mind?
+          </h2>
+          <p className="font-mono text-white/90 mt-4 max-w-xl leading-relaxed">
+            Tell me about the problem you want solved. I will come back with
+            questions, a scope and a plan before any work starts.
           </p>
-          <a
+          <Link
             href="/contact"
             className="inline-block mt-8 px-8 py-4 bg-black text-white font-mono uppercase hover:bg-white hover:text-[#4a0dbc] transition-colors border-2 border-black shadow-lg shadow-[#4a0dbc]/40"
           >
-            Get in Touch
-          </a>
+            Start a conversation
+          </Link>
         </div>
       </section>
 
       <Footer />
     </main>
-  )
+  );
 }

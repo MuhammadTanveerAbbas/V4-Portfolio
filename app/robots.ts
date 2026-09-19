@@ -1,4 +1,5 @@
-import { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
+import { siteConfig } from "@/lib/site";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -6,10 +7,9 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/_next/"],
+        disallow: ["/api/"],
       },
     ],
-    sitemap: "https://muhammadtanveerabbas.vercel.app/sitemap.xml",
-    host: "https://muhammadtanveerabbas.vercel.app",
+    sitemap: `${siteConfig.url}/sitemap.xml`,
   };
 }
